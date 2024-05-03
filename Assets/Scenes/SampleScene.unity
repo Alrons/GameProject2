@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &107091402 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1993356884603921908, guid: 032a72cfc45569047a538913e5ea1311, type: 3}
+  m_PrefabInstance: {fileID: 1667731018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &143635210
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +210,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 574961455}
   m_HandleRect: {fileID: 574961454}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -249,6 +254,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143635210}
   m_CullTransparentMesh: 1
+--- !u!1 &163091973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2658859598258795215, guid: 300a801493e3fc944b4927ad85efee36, type: 3}
+  m_PrefabInstance: {fileID: 566866187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &363448703
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +367,21 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7247643895292567579, guid: 032a72cfc45569047a538913e5ea1311, type: 3}
   m_PrefabInstance: {fileID: 1667731018}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &422771653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107091402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef687c1f591258441a785972ac865a6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  form: {fileID: 163091973}
+  dragObject: {fileID: 107091402}
+  scrollRect: {fileID: 816124129}
 --- !u!1 &491900590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1654,7 +1679,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1993356884603921908, guid: 032a72cfc45569047a538913e5ea1311, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 422771653}
   m_SourcePrefab: {fileID: 100100000, guid: 032a72cfc45569047a538913e5ea1311, type: 3}
 --- !u!1 &1764707941
 GameObject:
