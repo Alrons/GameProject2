@@ -10,10 +10,10 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     private Vector2 startPos;// стартова€ позици€
     private bool posNow;
 
-    public GameObject form;// обща€ переменна€ в которую мы будем назначать место дл€ большего удобства
+    [SerializeField] private GameObject form;// обща€ переменна€ в которую мы будем назначать место дл€ большего удобства
 
-    public GameObject dragObject; // наш объект
-    public ScrollRect scrollRect;
+    [SerializeField] private GameObject dragObject; // наш объект
+    [SerializeField] private ScrollRect scrollRect;
 
     public void OnTriggerStay2D(Collider2D collision)
     {
@@ -37,7 +37,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
         scrollRect.vertical = false;
         //image.raycastTarget = false;
-        startPos = dragObject.transform.position; // Ѕерем коарденаты изначальной позиций и запоминаем
+        startPos = dragObject.transform.position; // Ѕерем координаты изначальной позиций и запоминаем
     }
 
     public void OnDrag(PointerEventData eventData)// перемещение 

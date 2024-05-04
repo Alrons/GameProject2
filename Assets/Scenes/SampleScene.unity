@@ -210,7 +210,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 574961455}
   m_HandleRect: {fileID: 574961454}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -744,11 +744,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3041874245154881366, guid: 300a801493e3fc944b4927ad85efee36, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 240
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 3041874245154881366, guid: 300a801493e3fc944b4927ad85efee36, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 3041874245154881366, guid: 300a801493e3fc944b4927ad85efee36, type: 3}
       propertyPath: m_LocalScale.z
@@ -784,11 +784,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3041874245154881366, guid: 300a801493e3fc944b4927ad85efee36, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 375
+      value: 334
       objectReference: {fileID: 0}
     - target: {fileID: 3041874245154881366, guid: 300a801493e3fc944b4927ad85efee36, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -118
+      value: -101
       objectReference: {fileID: 0}
     - target: {fileID: 3041874245154881366, guid: 300a801493e3fc944b4927ad85efee36, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
