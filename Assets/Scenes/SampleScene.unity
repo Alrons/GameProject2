@@ -210,7 +210,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 574961455}
   m_HandleRect: {fileID: 574961454}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -382,6 +382,18 @@ MonoBehaviour:
   form: {fileID: 163091973}
   dragObject: {fileID: 107091402}
   scrollRect: {fileID: 816124129}
+--- !u!114 &422771658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107091402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ed3c6afb21f8644856708275345cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &491900590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,6 +1695,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1993356884603921908, guid: 032a72cfc45569047a538913e5ea1311, type: 3}
       insertIndex: -1
       addedObject: {fileID: 422771653}
+    - targetCorrespondingSourceObject: {fileID: 1993356884603921908, guid: 032a72cfc45569047a538913e5ea1311, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 422771658}
   m_SourcePrefab: {fileID: 100100000, guid: 032a72cfc45569047a538913e5ea1311, type: 3}
 --- !u!1 &1764707941
 GameObject:
