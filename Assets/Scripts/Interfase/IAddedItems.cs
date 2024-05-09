@@ -6,41 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine.Networking;
 using UnityEngine;
+using System.Collections;
 
 
     public interface IAddedItems : IItems{
-
-    public int UserId {  get; set; }
-    public Task<int> CreateItem(ItemModel item)
-    {
-        try
-        {
-            var url = "https://localhost:7139/api/Items";
-
-            var json = JsonUtility.ToJson(item);
-            var request = new UnityWebRequest(url, "POST");
-            byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
-            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-            request.downloadHandler = new DownloadHandlerBuffer();
-            request.SetRequestHeader("Content-Type", "application/json");
-            request.SendWebRequest();
-
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                var itemId = JsonUtility.FromJson<ItemIdResponse>(request.downloadHandler.text).Id;
-                return Task.FromResult(itemId);
-            }
-            else
-            {
-                throw new Exception($"Failed to create item: {request.result}");
-            }
-        }
-        catch (HttpRequestException ex)
-        {
-            Debug.LogError($"Error creating item: {ex.Message}");
-            return Task.FromResult(-1); // or throw an exception
-        }
-    }
 
     [System.Serializable]
     public class ItemIdResponse

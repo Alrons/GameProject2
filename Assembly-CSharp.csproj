@@ -65,10 +65,12 @@
     <Compile Include="Assets\Scripts\Interfase\IItems.cs" />
     <Compile Include="Assets\Scripts\Class\AddedItems.cs" />
     <Compile Include="Assets\Scripts\Models\ItemModel.cs" />
+    <Compile Include="Assets\Scripts\OtherFile\SimpleJSON.cs" />
     <Compile Include="Assets\Scripts\Models\AddedItem.cs" />
     <Compile Include="Assets\Scripts\Class\Items.cs" />
     <Compile Include="Assets\Scripts\Interfase\IUpdate.cs" />
     <Compile Include="Assets\Scripts\Interfase\IAddedItems.cs" />
+    <Compile Include="Assets\Scripts\OtherFile\NewBehaviourScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

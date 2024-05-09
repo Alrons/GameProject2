@@ -1,89 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http;
-using UnityEngine.Networking;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
-using static UnityEditor.Progress;
 
-
-    public class AddedItems : IAddedItems
+    public class AddedItems
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public int Price { get; set; }
-        public int Сurrency { get; set; }
-        public string Image { get; set; }
-        public int Place { get; set; }
-        public int Health { get; set; }
-        public int Power { get; set; }
-        public int XPover { get; set; }
+        private readonly HttpClient _httpClient;
+        private List<AddedItemModel> addedItems;
 
+    public AddedItems()
+    {
+        _httpClient = new HttpClient { BaseAddress = new Uri("https://localhost:7139/api/") };
+    }
 
-        public async Task<bool> DeleteAddedItem(int id)
+    public async Task<bool> DeleteAddedItem(int id)
         {
             try
             {
-                using var httpClient = new HttpClient();
-                httpClient.BaseAddress = new Uri("https://localhost:7139/api/");
-
-                var response = await httpClient.DeleteAsync($"AddedItems/{id}");
-
+                var response = await _httpClient.DeleteAsync($"AddedItems/{id}");
                 return response.IsSuccessStatusCode;
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Error deleting item: {ex.Message}");
-                return false;
+                Debug.LogError($"Error deleting item: {ex.Message}");
+                throw; // re-throw the exception
             }
         }
 
-        public List<ItemModel> GetItems()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ItemModel GetItemByID(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-    public async Task<int> CreateItem(AddedItem item)
+    public async Task<string> GetAddedItems()
     {
         try
         {
-            using var httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://localhost:7139/api/");
-
-            var json = JsonUtility.ToJson(item);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var response = await httpClient.PostAsync("AddedItems", content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var itemId = JsonUtility.FromJson<AddedItemResponse>(await response.Content.ReadAsStringAsync()).Id;
-                return itemId;
-            }
-            else
-            {
-                throw new Exception($"Failed to create item: {response.StatusCode}");
-            }
+            var response = await _httpClient.GetAsync("AddedItems");
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
         }
         catch (HttpRequestException ex)
         {
-            Console.WriteLine($"Error creating item: {ex.Message}");
-            return -1; // or throw an exception
+            Debug.LogError($"Error getting added items: {ex.Message}");
+            throw; // re-throw the exception
         }
     }
-}
-[System.Serializable]
-public class AddedItemResponse
-{
-    public int Id;
-}
 
+        public async Task<bool> Upload(AddedItemModel model)
+        {
+            try
+            {
+                var json = JsonUtility.ToJson(model);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("AddedItems", content);
+                response.EnsureSuccessStatusCode();
+                var responseBody = await response.Content.ReadAsStringAsync();
+                Debug.Log("Response: " + responseBody);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("Error: " + ex.Message);
+                throw; // re-throw the exception
+            }
+        }
+    }
