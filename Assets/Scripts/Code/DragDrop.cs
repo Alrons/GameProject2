@@ -49,6 +49,10 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public void OnEndDrag(PointerEventData eventData)//опускание 
     {
         scrollRect.vertical = true;
+        if (posNow)
+        {
+
+        }
 
         this.transform.position = startPos;// возвращение на место если условие не верно 
     }

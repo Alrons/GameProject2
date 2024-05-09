@@ -1,16 +1,38 @@
+using Assets.Scripts.Interfase;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class Items : IItems
+public class Items: IGet
 {
+    private readonly HttpClient _httpClient;
+    private string _url;
+    public Items()
+    {
+        _httpClient = new HttpClient { BaseAddress = new Uri("https://localhost:7139/api/") };
+        _url = "Items";
+    }
     public ItemModel GetItemByID(int id)
     {
         throw new System.NotImplementedException();
     }
 
-    public List<ItemModel> GetItems()
+    public async Task<string> Get()
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            var response = await _httpClient.GetAsync(_url);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
+            
+        }
+        catch (HttpRequestException ex)
+        {
+            Debug.LogError($"Error getting added items: {ex.Message}");
+            throw; // re-throw the exception
+        }
     }
 }

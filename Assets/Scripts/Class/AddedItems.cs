@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Interfase;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -6,21 +7,23 @@ using System.Threading.Tasks;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
-    public class AddedItems
-    {
+    public class AddedItems : IGet
+{
         private readonly HttpClient _httpClient;
         private List<AddedItemModel> addedItems;
+        private string _url;
 
     public AddedItems()
     {
         _httpClient = new HttpClient { BaseAddress = new Uri("https://localhost:7139/api/") };
+        _url = "AddedItems/";
     }
 
-    public async Task<bool> DeleteAddedItem(int id)
+    public async Task<bool> Delete(int id)
         {
             try
             {
-                var response = await _httpClient.DeleteAsync($"AddedItems/{id}");
+                var response = await _httpClient.DeleteAsync(_url+id);
                 return response.IsSuccessStatusCode;
             }
             catch (HttpRequestException ex)
@@ -30,11 +33,11 @@ using UnityEngine;
             }
         }
 
-    public async Task<string> GetAddedItems()
+    public async Task<string> Get()
     {
         try
         {
-            var response = await _httpClient.GetAsync("AddedItems");
+            var response = await _httpClient.GetAsync(_url);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
@@ -51,7 +54,7 @@ using UnityEngine;
             {
                 var json = JsonUtility.ToJson(model);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await _httpClient.PostAsync("AddedItems", content);
+                var response = await _httpClient.PostAsync(_url, content);
                 response.EnsureSuccessStatusCode();
                 var responseBody = await response.Content.ReadAsStringAsync();
                 Debug.Log("Response: " + responseBody);

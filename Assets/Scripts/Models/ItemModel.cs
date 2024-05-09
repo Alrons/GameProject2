@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ItemModel
 {
-    public int Id { get; set; }
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public int Price { get; set; }
-    public int Сurrency { get; set; }
-    public string Image { get; set; }
-    public int Place { get; set; }
-    public int Health { get; set; }
-    public int Power { get; set; }
+    public int Id;
+    public string Title;
+    public string Description;
+    public int Price;
+    public int Сurrency;
+    public string Image;
+    public int Place;
+    public int Health;
+    public int Power;
 
     // Костыль, где 1 это true 2 это false используется для проверки, добавленн или нет
-    public int XPover { get; set; }
+    public int XPover;
 
     public ItemModel(int Id, string Title, string Description, int Price, int Сurrency, string Image, int Place, int Health, int Power,int XPover)
     {
