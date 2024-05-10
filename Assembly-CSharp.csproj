@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Class\AddedItems.cs" />
     <Compile Include="Assets\Scripts\Class\SizeTable.cs" />
     <Compile Include="Assets\Scripts\Models\ItemModel.cs" />
+    <Compile Include="Assets\Scripts\Models\ShopItemModel.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />

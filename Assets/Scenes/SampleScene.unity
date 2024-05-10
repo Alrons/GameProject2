@@ -402,9 +402,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef687c1f591258441a785972ac865a6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  form: {fileID: 163091973}
   dragObject: {fileID: 107091402}
   scrollRect: {fileID: 816124129}
+  CanfasWereDrop: {fileID: 363448704}
+  SciptSpawnObject: {fileID: 519420028}
 --- !u!1 &491900590
 GameObject:
   m_ObjectHideFlags: 0

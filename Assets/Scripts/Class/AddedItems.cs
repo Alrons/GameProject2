@@ -10,13 +10,11 @@ using UnityEngine;
     public class AddedItems : IGet
 {
         private readonly HttpClient _httpClient;
-        private List<AddedItemModel> addedItems;
         private string _url;
 
     public AddedItems()
     {
-        _httpClient = new HttpClient { BaseAddress = new Uri("https://localhost:7139/api/") };
-        _url = "AddedItems/";
+        _url = "https://localhost:7139/api/AddedItems/";
     }
 
     public async Task<bool> Delete(int id)

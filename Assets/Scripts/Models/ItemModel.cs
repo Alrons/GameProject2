@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemModel
 {
+
     public int Id;
     public string Title;
     public string Description;

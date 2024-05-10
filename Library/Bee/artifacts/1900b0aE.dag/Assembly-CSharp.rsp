@@ -383,6 +383,7 @@
 "Assets/Scripts/Interfase/IUpdate.cs"
 "Assets/Scripts/Models/AddedItem.cs"
 "Assets/Scripts/Models/ItemModel.cs"
+"Assets/Scripts/Models/ShopItemModel.cs"
 "Assets/Scripts/Models/SizeTableModel.cs"
 "Assets/Scripts/OtherFile/NewBehaviourScript.cs"
 "Assets/Scripts/OtherFile/SimpleJSON.cs"

@@ -18,6 +18,8 @@ public class SpawnObject : MonoBehaviour
     private List<AddedItemModel> addedItemsList = new List<AddedItemModel>();
     private List<ItemModel> itemModels = new List<ItemModel>();
     private List<SizeTableModel> sizeTable = new List<SizeTableModel>();
+    public  List<ShopItemModel> shopItemModels = new List<ShopItemModel>();
+
     private int count;
 
     public GameObject Box;
@@ -34,12 +36,7 @@ public class SpawnObject : MonoBehaviour
     public Text Power;
     public Text XPower;
 
-    private Text Title1;
-    private Text Price1;
-    private Text Description1;
-    private Text Health1;
-    private Text Power1;
-    private Text XPower1;
+    
     Tests tester = new Tests("SpawnObject");
     AddedItems addedItems = new AddedItems();
     Items Items = new Items();
@@ -49,7 +46,7 @@ public class SpawnObject : MonoBehaviour
 
         string AddedItemJson = await addedItems.Get();
 
-        tester.StringLength(AddedItemJson, 1, 10);
+        tester.StringLength(AddedItemJson, 10);
 
         SimpleJSON.JSONNode AddedItemstats = SimpleJSON.JSON.Parse(AddedItemJson);
         for (int i = 0; i < AddedItemstats.Count; i++)
@@ -90,6 +87,7 @@ public class SpawnObject : MonoBehaviour
                 Itemstats[i]["power"],
                 Itemstats[i]["xPover"]
             ));
+            
         }
         string SizeTableJson = await SizeTable.Get();
 
@@ -143,11 +141,12 @@ public class SpawnObject : MonoBehaviour
             if (count != itemModels.Count)
             {
                 ChangePref(itemModels[i].Title, itemModels[i].Price, itemModels[i].Description, itemModels[i].Health, itemModels[i].Power, itemModels[i].XPover);
-                CopyPref(Box, Box.transform.position, CanvasObject);
+                shopItemModels.Add(new ShopItemModel(itemModels[i].Id, 1, itemModels[i].Title, itemModels[i].Description, itemModels[i].Price, itemModels[i].Ñurrency, itemModels[i].Image, itemModels[i].Place, itemModels[i].Health, itemModels[i].Power, itemModels[i].XPover, CopyPref(Box, Box.transform.position, CanvasObject)));
             }
             else
             {
                 ChangePref(itemModels[i].Title, itemModels[i].Price, itemModels[i].Description, itemModels[i].Health, itemModels[i].Power, itemModels[i].XPover);
+                shopItemModels.Add(new ShopItemModel(itemModels[i].Id, 1, itemModels[i].Title, itemModels[i].Description, itemModels[i].Price, itemModels[i].Ñurrency, itemModels[i].Image, itemModels[i].Place, itemModels[i].Health, itemModels[i].Power, itemModels[i].XPover, Box));
             }
         }
     }

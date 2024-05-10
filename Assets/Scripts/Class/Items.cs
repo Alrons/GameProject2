@@ -12,8 +12,7 @@ public class Items: IGet
     private string _url;
     public Items()
     {
-        _httpClient = new HttpClient { BaseAddress = new Uri("https://localhost:7139/api/") };
-        _url = "Items";
+        _url = "https://localhost:7139/api/Items/";
     }
     public ItemModel GetItemByID(int id)
     {
@@ -32,6 +31,19 @@ public class Items: IGet
         catch (HttpRequestException ex)
         {
             Debug.LogError($"Error getting added items: {ex.Message}");
+            throw; // re-throw the exception
+        }
+    }
+    public async Task<bool> Delete(int id)
+    {
+        try
+        {
+            var response = await _httpClient.DeleteAsync("https://localhost:7139/api/Items/" + id);
+            return response.IsSuccessStatusCode;
+        }
+        catch (HttpRequestException ex)
+        {
+            Debug.LogError($"Error deleting item: {ex.Message}");
             throw; // re-throw the exception
         }
     }
