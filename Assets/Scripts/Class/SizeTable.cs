@@ -16,7 +16,8 @@ namespace Assets.Scripts.Class
         private string _url;
         public SizeTable()
         {
-            _url = "https://localhost:7139/api/SizeTables/";
+            _httpClient = new HttpClient { BaseAddress = new Uri("https://localhost:7139/api/") };
+            _url = "SizeTables/";
         }
         public async Task<string> Get()
         {

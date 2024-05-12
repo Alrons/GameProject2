@@ -194,13 +194,28 @@ public class SpawnObject : MonoBehaviour
                         ItemAddedBox.GetComponentsInChildren<Text>()[3].text = $"{addedItemsList[i].price}";
                         ItemAddedBox.GetComponentsInChildren<Text>()[4].text = $"{addedItemsList[i].power}";
                         ItemAddedBox.GetComponentsInChildren<Text>()[5].text = $"{addedItemsList[i].description}";
+
+                        DragDrop script = ItemAddedBox.gameObject.GetComponent<DragDrop>();
+                        script.ThisAddedItem = true;
+                        script.Id = addedItemsList[i].id;
+                        script.Title = addedItemsList[i].title;
+                        script.Description = addedItemsList[i].description;
+                        script.Price = addedItemsList[i].price;
+                        script.Ñurrency = addedItemsList[i].currency;
+                        script.Image = addedItemsList[i].image;
+                        script.Place = addedItemsList[i].place;
+                        script.Health = addedItemsList[i].health;
+                        script.Power = addedItemsList[i].power;
+                        script.XPower = addedItemsList[i].xPower;
                         break;
                     }
                 }
-                tester.Print($"{child.name}");
                 count++;
             }
             
         }
     }
+
+
+
 }

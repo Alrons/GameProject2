@@ -6,9 +6,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    public bool ThisAddedItem { get; set; }
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public int Price { get; set; }
+    public int Сurrency { get; set; }
+    public string Image { get; set; }
+    public int Place { get; set; }
+    public int Health { get; set; }
+    public int Power { get; set; }
+    public int XPower { get; set; }
+
     private RectTransform recetTransform;
     private Vector2 startPos;// стартовая позиция
     
@@ -35,15 +48,22 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private Transform CanfasWereDrop;
     public GameObject SciptSpawnObject;
+    public GameObject SciptRefresh;
+
+
+
 
     Tests tester = new Tests("DragDrop");
     private SpawnObject spawnObject;
+    private Refrash Refrash;
 
     private void Start()
     {
         // ... other initialization code ...
         spawnObject = SciptSpawnObject.GetComponent<SpawnObject>();
-        Debug.Log(spawnObject);
+        Refrash = SciptSpawnObject.GetComponent<Refrash>();
+        
+
     }
 
     private void FormIsFull()
@@ -66,7 +86,6 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             int count = 1;
             foreach (Transform child in CanfasWereDrop.transform)
             {
-
                 if (child.name == "PlaceForDrop(Clone)")
                 {
                     if (count == OurPlase)
@@ -82,6 +101,11 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         
 
     }
+
+
+
+
+
     //ShopItemModel shopItemModel = spawnObject.shopItemModels;
     private void FindOurPlase(SpawnObject spawnObject)
     {
@@ -149,11 +173,16 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnBeginDrag(PointerEventData eventData)//подняте 
     {
+
         FindOurPlase(spawnObject);
         FindForm();
         scrollRect.vertical = false;
         //image.raycastTarget = false;
         startPos = dragObject.transform.position; // Берем координаты изначальной позиций и запоминаем
+        
+
+
+
     }
 
     public void OnDrag(PointerEventData eventData)// перемещение 
@@ -173,8 +202,9 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 Items items = new Items();
                 AddedItems addedItems = new AddedItems();
 
-                items.Delete(OurID);
+                
                 addedItems.Upload(new AddedItemModel(OurID, userId, title, description,price,currency,image,place,health,power,xPower));
+                Refreshing();
 
                 Destroy(dragObject);
 
@@ -184,6 +214,15 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         }
 
         this.transform.position = startPos;// возвращение на место если условие не верно 
+    }
+    private async void Refreshing()
+    {
+        Items items = new Items();
+        if (await items.Delete(OurID))
+        {
+            Refrash.RefreshPlaseforDrop();
+        }
+        
     }
 
 

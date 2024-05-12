@@ -3,48 +3,56 @@
   "WorkspaceRootPath": "A:\\GitRepository\\GameProject2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\class\\addeditems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\class\\addeditems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\code\\dragdrop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\code\\dragdrop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\class\\sizetable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\class\\sizetable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\code\\refrash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\code\\refrash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|a:\\gitrepository\\gameproject2\\assets\\scripts\\code\\fordelete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\code\\fordelete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\class\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\class\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\code\\dragdrop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\code\\dragdrop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\class\\addeditems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\class\\addeditems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|a:\\gitrepository\\gameproject2\\assets\\scripts\\code\\spawnobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\code\\spawnobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\code\\spawnobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|a:\\gitrepository\\gameproject2\\assets\\scripts\\models\\shopitemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\models\\shopitemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\models\\addeditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\models\\addeditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\models\\itemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\models\\itemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\class\\sizetable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\class\\sizetable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\models\\addeditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\models\\addeditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\models\\sizetablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\models\\sizetablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\interfase\\iupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interfase\\iupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\models\\shopitemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\models\\shopitemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\debugtests\\tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\debugtests\\tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\interfase\\iupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interfase\\iupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4439203-C38C-1896-46B8-75AF86568070}|Assembly-CSharp.csproj|A:\\GitRepository\\GameProject2\\assets\\scripts\\otherfile\\newbehaviourscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -62,23 +70,23 @@
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
-      "VerticalTabListWidth": 256,
+      "VerticalTabListWidth": 175,
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ShopItemModel.cs",
-              "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Models\\ShopItemModel.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Models\\ShopItemModel.cs",
-              "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Models\\ShopItemModel.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Models\\ShopItemModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwCMAAAAfAAAA",
+              "DocumentIndex": 2,
+              "Title": "ForDelete.cs",
+              "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Code\\ForDelete.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Code\\ForDelete.cs",
+              "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Code\\ForDelete.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Code\\ForDelete.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAlwBwAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T17:40:10.096Z",
+              "WhenOpened": "2024-05-12T11:16:26.356Z",
               "EditorCaption": ""
             },
             {
@@ -91,7 +99,45 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 1,
+              "Title": "Refrash.cs",
+              "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Code\\Refrash.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Code\\Refrash.cs",
+              "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Code\\Refrash.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Code\\Refrash.cs",
+              "ViewState": "AQIAAFAAAAAAAAAAAAAwwHgAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T13:48:49.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SpawnObject.cs",
+              "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Code\\SpawnObject.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Code\\SpawnObject.cs",
+              "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Code\\SpawnObject.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Code\\SpawnObject.cs",
+              "ViewState": "AQIAAKgAAAAAAAAAAAAmwM8AAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T15:46:58.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ShopItemModel.cs",
+              "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Models\\ShopItemModel.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Models\\ShopItemModel.cs",
+              "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Models\\ShopItemModel.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Models\\ShopItemModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T17:40:10.096Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "NewBehaviourScript.cs",
               "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\OtherFile\\NewBehaviourScript.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\OtherFile\\NewBehaviourScript.cs",
@@ -103,20 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SpawnObject.cs",
-              "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Code\\SpawnObject.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Code\\SpawnObject.cs",
-              "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Code\\SpawnObject.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Code\\SpawnObject.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAgwFkAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T15:46:58.045Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "SizeTableModel.cs",
               "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Models\\SizeTableModel.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Models\\SizeTableModel.cs",
@@ -124,12 +157,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Models\\SizeTableModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T10:51:30.562Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-09T10:51:30.562Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "IGet.cs",
               "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Interfase\\IGet.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Interfase\\IGet.cs",
@@ -141,32 +173,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "SizeTable.cs",
               "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Class\\SizeTable.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Class\\SizeTable.cs",
               "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Class\\SizeTable.cs",
               "RelativeToolTip": "Assets\\Scripts\\Class\\SizeTable.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-09T10:22:14.649Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Tests.cs",
               "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\DebugTests\\Tests.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\DebugTests\\Tests.cs",
               "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\DebugTests\\Tests.cs",
               "RelativeToolTip": "Assets\\Scripts\\DebugTests\\Tests.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAjwBUAAABVAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAArwC0AAABYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-09T09:16:27.389Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "SimpleJSON.cs",
               "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\OtherFile\\SimpleJSON.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\OtherFile\\SimpleJSON.cs",
@@ -178,72 +210,71 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "AddedItems.cs",
               "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Class\\AddedItems.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Class\\AddedItems.cs",
               "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Class\\AddedItems.cs",
               "RelativeToolTip": "Assets\\Scripts\\Class\\AddedItems.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAqAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-03T20:38:20.235Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "AddedItem.cs",
               "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Models\\AddedItem.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Models\\AddedItem.cs",
               "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Models\\AddedItem.cs",
               "RelativeToolTip": "Assets\\Scripts\\Models\\AddedItem.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAEAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-05T17:49:48.964Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-05T17:49:48.964Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "DragDrop.cs",
               "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Code\\DragDrop.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Code\\DragDrop.cs",
               "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Code\\DragDrop.cs",
               "RelativeToolTip": "Assets\\Scripts\\Code\\DragDrop.cs",
-              "ViewState": "AQIAAJMAAAAAAAAAAAAmwK8AAAAcAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-03T15:21:03.408Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "ItemModel.cs",
               "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Models\\ItemModel.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Models\\ItemModel.cs",
               "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Models\\ItemModel.cs",
               "RelativeToolTip": "Assets\\Scripts\\Models\\ItemModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAXAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-03T15:32:02.031Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Items.cs",
               "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Class\\Items.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Class\\Items.cs",
               "ToolTip": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Class\\Items.cs",
               "RelativeToolTip": "Assets\\Scripts\\Class\\Items.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAzAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-03T20:36:40.835Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "IUpdate.cs",
               "DocumentMoniker": "A:\\GitRepository\\GameProject2\\Assets\\Scripts\\Interfase\\IUpdate.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Interfase\\IUpdate.cs",
@@ -251,8 +282,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Interfase\\IUpdate.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T20:30:46.782Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T20:30:46.782Z"
             }
           ]
         }

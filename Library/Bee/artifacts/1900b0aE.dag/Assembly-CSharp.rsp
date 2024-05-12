@@ -377,6 +377,8 @@
 "Assets/Scripts/Class/Items.cs"
 "Assets/Scripts/Class/SizeTable.cs"
 "Assets/Scripts/Code/DragDrop.cs"
+"Assets/Scripts/Code/ForDelete.cs"
+"Assets/Scripts/Code/Refrash.cs"
 "Assets/Scripts/Code/SpawnObject.cs"
 "Assets/Scripts/DebugTests/Tests.cs"
 "Assets/Scripts/Interfase/IGet.cs"
