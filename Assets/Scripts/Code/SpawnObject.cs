@@ -15,10 +15,9 @@ using Assets.Scripts.Models;
 
 public class SpawnObject : MonoBehaviour
 {
-    private List<AddedItemModel> addedItemsList = new List<AddedItemModel>();
-    private List<ItemModel> itemModels = new List<ItemModel>();
+    public List<AddedItemModel> addedItemsList = new List<AddedItemModel>();
+    public List<ItemModel> AllItems = new List<ItemModel>();
     private List<SizeTableModel> sizeTable = new List<SizeTableModel>();
-    public  List<ShopItemModel> shopItemModels = new List<ShopItemModel>();
 
     private int count;
 
@@ -74,7 +73,7 @@ public class SpawnObject : MonoBehaviour
         SimpleJSON.JSONNode Itemstats = SimpleJSON.JSON.Parse(ItemJson);
         for (int i = 0; i < Itemstats.Count; i++)
         {
-            itemModels.Add(new ItemModel
+            AllItems.Add(new ItemModel
             (
                 Itemstats[i]["id"],
                 Itemstats[i]["title"],
@@ -134,20 +133,27 @@ public class SpawnObject : MonoBehaviour
     
     private void InitializingItems()
     {
-        tester.IntRange(itemModels.Count, 2);
-        for (int i = 0; i < itemModels.Count; i++)
+        tester.IntRange(AllItems.Count, 2);
+        for (int i = 0; i < AllItems.Count; i++)
         {
-            tester.ForStart("InitializingItems",i, itemModels.Count);
-            if (count != itemModels.Count)
+            tester.ForStart("InitializingItems",i, AllItems.Count);
+            if (count != AllItems.Count)
             {
-                ChangePref(itemModels[i].Title, itemModels[i].Price, itemModels[i].Description, itemModels[i].Health, itemModels[i].Power, itemModels[i].XPover);
-                shopItemModels.Add(new ShopItemModel(itemModels[i].Id, 1, itemModels[i].Title, itemModels[i].Description, itemModels[i].Price, itemModels[i].Ñurrency, itemModels[i].Image, itemModels[i].Place, itemModels[i].Health, itemModels[i].Power, itemModels[i].XPover, CopyPref(Box, Box.transform.position, CanvasObject)));
+                ChangePref(AllItems[i].Title, AllItems[i].Price, AllItems[i].Description, AllItems[i].Health, AllItems[i].Power, AllItems[i].XPover);
+                GameObject gmItem = CopyPref(Box, Box.transform.position, CanvasObject);
+                DragDrop dragDrop = gmItem.GetComponent<DragDrop>();
+                dragDrop.Id = AllItems[i].Id;
+                dragDrop.Title = AllItems[i].Title;
+                dragDrop.Description = AllItems[i].Description;
+                dragDrop.Price = AllItems[i].Price;
+                dragDrop.Ñurrency = AllItems[i].Ñurrency;
+                dragDrop.Image = AllItems[i].Image;
+                dragDrop.Place = AllItems[i].Place;
+                dragDrop.Health = AllItems[i].Health;
+                dragDrop.Power = AllItems[i].Power;
+                dragDrop.XPower = AllItems[i].XPover;
             }
-            else
-            {
-                ChangePref(itemModels[i].Title, itemModels[i].Price, itemModels[i].Description, itemModels[i].Health, itemModels[i].Power, itemModels[i].XPover);
-                shopItemModels.Add(new ShopItemModel(itemModels[i].Id, 1, itemModels[i].Title, itemModels[i].Description, itemModels[i].Price, itemModels[i].Ñurrency, itemModels[i].Image, itemModels[i].Place, itemModels[i].Health, itemModels[i].Power, itemModels[i].XPover, Box));
-            }
+           
         }
     }
     private void InitializingTable()

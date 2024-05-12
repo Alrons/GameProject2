@@ -32,18 +32,6 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     private bool DidThePlaseSearchWork = false;
     private int OurPlase;
 
-    private int OurID;
-    private int userId;
-    private string title;
-    private string description;
-    private int price;
-    private int currency;
-    private string image;
-    private int place;
-    private int health;
-    private int power;
-    private int xPower;
-
     [SerializeField] private GameObject dragObject; // наш объект
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private Transform CanfasWereDrop;
@@ -88,7 +76,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             {
                 if (child.name == "PlaceForDrop(Clone)")
                 {
-                    if (count == OurPlase)
+                    if (count == Place)
                     {
                         Debug.Log("FindForm: OK");
                         form = child.gameObject;
@@ -102,56 +90,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     }
 
-
-
-
-
     //ShopItemModel shopItemModel = spawnObject.shopItemModels;
-    private void FindOurPlase(SpawnObject spawnObject)
-    {
-        if (!DidThePlaseSearchWork) {
-            bool ForlustItem = true;
-            for (int i = 0; i < spawnObject.shopItemModels.Count; i++)
-            {
-                if (spawnObject.shopItemModels[i].GameObject == dragObject)
-                {
-                    OurPlase = spawnObject.shopItemModels[i].place;
-                    userId = spawnObject.shopItemModels[i].userId;
-                    OurID = spawnObject.shopItemModels[i].id;
-                    title = spawnObject.shopItemModels[i].title;
-                    description = spawnObject.shopItemModels[i].description;
-                    price = spawnObject.shopItemModels[i].price;
-                    currency = spawnObject.shopItemModels[i].currency;
-                    image = spawnObject.shopItemModels[i].image;
-                    place = spawnObject.shopItemModels[i].place;
-                    health = spawnObject.shopItemModels[i].health;
-                    power = spawnObject.shopItemModels[i].power;
-                    xPower = spawnObject.shopItemModels[i].xPower;
-                    ForlustItem = false;
-                }
-
-            }
-            if (ForlustItem)
-            {
-                Debug.Log("ForlustItem: OK");
-                OurPlase = spawnObject.shopItemModels[^1].place;
-                userId = spawnObject.shopItemModels[^1].userId;
-                OurPlase = spawnObject.shopItemModels[^1].place;
-                OurID = spawnObject.shopItemModels[^1].id;
-                title = spawnObject.shopItemModels[^1].title;
-                description = spawnObject.shopItemModels[^1].description;
-                price = spawnObject.shopItemModels[^1].price;
-                currency = spawnObject.shopItemModels[^1].currency;
-                image = spawnObject.shopItemModels[^1].image;
-                place = spawnObject.shopItemModels[^1].place;
-                health = spawnObject.shopItemModels[^1].health;
-                power = spawnObject.shopItemModels[^1].power;
-                xPower = spawnObject.shopItemModels[^1].xPower;
-
-            }
-
-        }
-    }
+   
 
     public void OnTriggerStay2D(Collider2D collision)
     {
@@ -174,7 +114,6 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public void OnBeginDrag(PointerEventData eventData)//подняте 
     {
 
-        FindOurPlase(spawnObject);
         FindForm();
         scrollRect.vertical = false;
         //image.raycastTarget = false;
@@ -191,7 +130,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         recetTransform.anchoredPosition += eventData.delta;
     }
 
-    public void OnEndDrag(PointerEventData eventData)//опускание 
+    public async void OnEndDrag(PointerEventData eventData)//опускание 
     {
         FormIsFull();
         scrollRect.vertical = true;
@@ -202,9 +141,9 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 Items items = new Items();
                 AddedItems addedItems = new AddedItems();
 
-                
-                addedItems.Upload(new AddedItemModel(OurID, userId, title, description,price,currency,image,place,health,power,xPower));
-                Refreshing();
+
+                bool check = await addedItems.Upload(new AddedItemModel(Id, 1, Title, Description,Price,Сurrency,Image,Place,Health,Power,XPower));
+                Refreshing(check);
 
                 Destroy(dragObject);
 
@@ -215,13 +154,17 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
         this.transform.position = startPos;// возвращение на место если условие не верно 
     }
-    private async void Refreshing()
+    private async void Refreshing(bool check)
     {
         Items items = new Items();
-        if (await items.Delete(OurID))
+        if (check)
         {
-            Refrash.RefreshPlaseforDrop();
+            if (await items.Delete(Id))
+            {
+                Refrash.RefreshPlaseforDrop();
+            }
         }
+        
         
     }
 

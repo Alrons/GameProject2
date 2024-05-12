@@ -352,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7247643895292567579, guid: 032a72cfc45569047a538913e5ea1311, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -868.99994
+      value: -869
       objectReference: {fileID: 0}
     - target: {fileID: 7247643895292567579, guid: 032a72cfc45569047a538913e5ea1311, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -669,6 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ed3c6afb21f8644856708275345cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addedItemsList: []
   Box: {fileID: 1137503844}
   CanvasObject: {fileID: 977933510}
   PlaseDrop: {fileID: 163091973}
@@ -695,6 +696,7 @@ MonoBehaviour:
   RefrashCunvas: {fileID: 363448704}
   PrefabObject: {fileID: 1137503844}
   MainCamera: {fileID: 519420028}
+  ContentShop: {fileID: 977933509}
   Title: {fileID: 1246811910}
   Price: {fileID: 1587425984}
   Description: {fileID: 1785940412}
@@ -1637,7 +1639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -634, y: -786}
+  m_AnchoredPosition: {x: -633.99994, y: -786}
   m_SizeDelta: {x: 186.94, y: 32.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1137503844 stripped

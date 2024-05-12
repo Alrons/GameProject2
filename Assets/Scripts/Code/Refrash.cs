@@ -5,12 +5,15 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 public class Refrash : MonoBehaviour
 {
     public Transform RefrashCunvas;
     public GameObject PrefabObject;
     public GameObject MainCamera;
+    public GameObject ContentShop;
 
     public Text Title;
     public Text Price;
@@ -19,14 +22,13 @@ public class Refrash : MonoBehaviour
     public Text Power;
     public Text XPower;
 
-    private List<AddedItemModel> addedItemsList = new List<AddedItemModel>();
+    private SpawnObject spawnObject;
 
     Tests tester = new Tests("SpawnObject");
     AddedItems addedItems = new AddedItems();
     Items Items = new Items();
     SizeTable SizeTable = new SizeTable();
 
-    private SpawnObject spawnObject;
 
     public void Start()
     {
@@ -44,14 +46,13 @@ public class Refrash : MonoBehaviour
             }
         }
 
-
     }
 
 
     private int ForThisPlase(int count)
     {
         int counting = 0;
-        foreach (AddedItemModel item in addedItemsList) 
+        foreach (AddedItemModel item in spawnObject.addedItemsList) 
         {
             if (count == item.place)
             {
@@ -64,7 +65,7 @@ public class Refrash : MonoBehaviour
 
     public async void RefreshPlaseforDrop()
     {
-        
+        spawnObject.addedItemsList.Clear(); 
         string AddedItemJson = await addedItems.Get();
 
         tester.StringLength(AddedItemJson, 10);
@@ -72,7 +73,7 @@ public class Refrash : MonoBehaviour
         SimpleJSON.JSONNode AddedItemstats = SimpleJSON.JSON.Parse(AddedItemJson);
         for (int i = 0; i < AddedItemstats.Count; i++)
         {
-            addedItemsList.Add(new AddedItemModel
+            spawnObject.addedItemsList.Add(new AddedItemModel
             (
                 AddedItemstats[i]["id"],
                 AddedItemstats[i]["userId"],
@@ -102,30 +103,86 @@ public class Refrash : MonoBehaviour
             if (JustNumber == -1) ;
             else
             {
-                Title.text = addedItemsList[JustNumber].title;
-                Price.text = $"{addedItemsList[JustNumber].price}";
-                Description.text = addedItemsList[JustNumber].description;
-                Health.text = $"{addedItemsList[JustNumber].health}";
-                Power.text = $"{addedItemsList[JustNumber].power}";
-                XPower.text = $"{addedItemsList[JustNumber].xPower}";
+                Title.text = spawnObject.addedItemsList[JustNumber].title;
+                Price.text = $"{spawnObject.addedItemsList[JustNumber].price}";
+                Description.text = spawnObject.addedItemsList[JustNumber].description;
+                Health.text = $"{spawnObject.addedItemsList[JustNumber].health}";
+                Power.text = $"{spawnObject.addedItemsList[JustNumber].power}";
+                XPower.text = $"{spawnObject.addedItemsList[JustNumber].xPower}";
                 DragDrop script = spawnObject.CopyPref(PrefabObject, child.position, child).GetComponent<DragDrop>();
                 script.ThisAddedItem = true;
-                script.Id = addedItemsList[JustNumber].id;
-                script.Title = addedItemsList[JustNumber].title;
-                script.Description = addedItemsList[JustNumber].description;
-                script.Price = addedItemsList[JustNumber].price;
-                script.Ñurrency = addedItemsList[JustNumber].currency;
-                script.Image = addedItemsList[JustNumber].image;
-                script.Place = addedItemsList[JustNumber].place;
-                script.Health = addedItemsList[JustNumber].health;
-                script.Power = addedItemsList[JustNumber].power;
-                script.XPower = addedItemsList[JustNumber].xPower;
+                script.Id = spawnObject.addedItemsList[JustNumber].id;
+                script.Title = spawnObject.addedItemsList[JustNumber].title;
+                script.Description = spawnObject.addedItemsList[JustNumber].description;
+                script.Price = spawnObject.addedItemsList[JustNumber].price;
+                script.Ñurrency = spawnObject.addedItemsList[JustNumber].currency;
+                script.Image = spawnObject.addedItemsList[JustNumber].image;
+                script.Place = spawnObject.addedItemsList[JustNumber].place;
+                script.Health = spawnObject.addedItemsList[JustNumber].health;
+                script.Power = spawnObject.addedItemsList[JustNumber].power;
+                script.XPower = spawnObject.addedItemsList[JustNumber].xPower;
 
             }
 
             Count++;
         }
     }
-    
+    public async void RefreshItemsInShop()
+    {
+        string ItemJson = await Items.Get();
 
+        tester.StringLength(ItemJson, 10);
+
+        spawnObject.AllItems.Clear();
+
+        SimpleJSON.JSONNode Itemstats = SimpleJSON.JSON.Parse(ItemJson);
+        for (int i = 0; i < Itemstats.Count; i++)
+        {
+            spawnObject.AllItems.Add(new ItemModel
+            (
+                Itemstats[i]["id"],
+                Itemstats[i]["title"],
+                Itemstats[i]["description"],
+                Itemstats[i]["price"],
+                Itemstats[i]["ñurrency"],
+                Itemstats[i]["image"],
+                Itemstats[i]["place"],
+                Itemstats[i]["health"],
+                Itemstats[i]["power"],
+                Itemstats[i]["xPover"]
+            ));
+
+        }
+        foreach (Transform child in ContentShop.transform)
+        {
+            Destroy(child.gameObject);
+            
+        }
+        int count = 0;
+        foreach (ItemModel Item in spawnObject.AllItems)
+        {
+            Title.text = Item.Title;
+            Price.text = $"{Item.Price}";
+            Description.text = Item.Description;
+            Health.text = $"{Item.Health}";
+            Power.text = $"{Item.Power}";
+            XPower.text = $"{Item.XPover}";
+            
+            GameObject gmItem = spawnObject.CopyPref(PrefabObject, new Vector3(0, 0, 0), ContentShop.transform);
+            DragDrop dragDrop = gmItem.GetComponent<DragDrop>();
+            dragDrop.Id = spawnObject.AllItems[count].Id;
+            dragDrop.Title = spawnObject.AllItems[count].Title;
+            dragDrop.Description = spawnObject.AllItems[count].Description;
+            dragDrop.Price = spawnObject.AllItems[count].Price;
+            dragDrop.Ñurrency = spawnObject.AllItems[count].Ñurrency;
+            dragDrop.Image = spawnObject.AllItems[count].Image;
+            dragDrop.Place = spawnObject.AllItems[count].Place;
+            dragDrop.Health = spawnObject.AllItems[count].Health;
+            dragDrop.Power = spawnObject.AllItems[count].Power;
+            dragDrop.XPower = spawnObject.AllItems[count].XPover;
+
+            count++;
+        }
+
+    } 
 }
