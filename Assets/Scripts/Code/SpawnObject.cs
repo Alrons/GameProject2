@@ -17,7 +17,7 @@ public class SpawnObject : MonoBehaviour
 {
     public List<AddedItemModel> addedItemsList = new List<AddedItemModel>();
     public List<ItemModel> AllItems = new List<ItemModel>();
-    private List<SizeTableModel> sizeTable = new List<SizeTableModel>();
+    public List<SizeTableModel> sizeTable = new List<SizeTableModel>();
 
     private int count;
 
@@ -139,19 +139,23 @@ public class SpawnObject : MonoBehaviour
             tester.ForStart("InitializingItems",i, AllItems.Count);
             if (count != AllItems.Count)
             {
-                ChangePref(AllItems[i].Title, AllItems[i].Price, AllItems[i].Description, AllItems[i].Health, AllItems[i].Power, AllItems[i].XPover);
-                GameObject gmItem = CopyPref(Box, Box.transform.position, CanvasObject);
-                DragDrop dragDrop = gmItem.GetComponent<DragDrop>();
-                dragDrop.Id = AllItems[i].Id;
-                dragDrop.Title = AllItems[i].Title;
-                dragDrop.Description = AllItems[i].Description;
-                dragDrop.Price = AllItems[i].Price;
-                dragDrop.Ñurrency = AllItems[i].Ñurrency;
-                dragDrop.Image = AllItems[i].Image;
-                dragDrop.Place = AllItems[i].Place;
-                dragDrop.Health = AllItems[i].Health;
-                dragDrop.Power = AllItems[i].Power;
-                dragDrop.XPower = AllItems[i].XPover;
+                if (AllItems[i].Place <= (sizeTable[^1].height * sizeTable[^1].width))
+                {
+                    ChangePref(AllItems[i].Title, AllItems[i].Price, AllItems[i].Description, AllItems[i].Health, AllItems[i].Power, AllItems[i].XPover);
+                    GameObject gmItem = CopyPref(Box, Box.transform.position, CanvasObject);
+                    DragDrop dragDrop = gmItem.GetComponent<DragDrop>();
+                    dragDrop.Id = AllItems[i].Id;
+                    dragDrop.Title = AllItems[i].Title;
+                    dragDrop.Description = AllItems[i].Description;
+                    dragDrop.Price = AllItems[i].Price;
+                    dragDrop.Ñurrency = AllItems[i].Ñurrency;
+                    dragDrop.Image = AllItems[i].Image;
+                    dragDrop.Place = AllItems[i].Place;
+                    dragDrop.Health = AllItems[i].Health;
+                    dragDrop.Power = AllItems[i].Power;
+                    dragDrop.XPower = AllItems[i].XPover;
+                }
+                
             }
            
         }
@@ -193,27 +197,32 @@ public class SpawnObject : MonoBehaviour
                 {
                     if (count == addedItemsList[i].place)
                     {
-                        Transform ItemAddedBox = CopyPref(Box, child.transform.position, child).transform;
-                        ItemAddedBox.GetComponentsInChildren<Text>()[0].text = $"{addedItemsList[i].title}";
-                        ItemAddedBox.GetComponentsInChildren<Text>()[1].text = $"{addedItemsList[i].health}";
-                        ItemAddedBox.GetComponentsInChildren<Text>()[2].text = $"{addedItemsList[i].xPower}";
-                        ItemAddedBox.GetComponentsInChildren<Text>()[3].text = $"{addedItemsList[i].price}";
-                        ItemAddedBox.GetComponentsInChildren<Text>()[4].text = $"{addedItemsList[i].power}";
-                        ItemAddedBox.GetComponentsInChildren<Text>()[5].text = $"{addedItemsList[i].description}";
+                        if (addedItemsList[i].place <= (sizeTable[^1].height * sizeTable[^1].width))
+                        {
+                            Transform ItemAddedBox = CopyPref(Box, child.transform.position, child).transform;
+                            ItemAddedBox.GetComponentsInChildren<Text>()[0].text = $"{addedItemsList[i].title}";
+                            ItemAddedBox.GetComponentsInChildren<Text>()[1].text = $"{addedItemsList[i].health}";
+                            ItemAddedBox.GetComponentsInChildren<Text>()[2].text = $"{addedItemsList[i].xPower}";
+                            ItemAddedBox.GetComponentsInChildren<Text>()[3].text = $"{addedItemsList[i].price}";
+                            ItemAddedBox.GetComponentsInChildren<Text>()[4].text = $"{addedItemsList[i].power}";
+                            ItemAddedBox.GetComponentsInChildren<Text>()[5].text = $"{addedItemsList[i].description}";
 
-                        DragDrop script = ItemAddedBox.gameObject.GetComponent<DragDrop>();
-                        script.ThisAddedItem = true;
-                        script.Id = addedItemsList[i].id;
-                        script.Title = addedItemsList[i].title;
-                        script.Description = addedItemsList[i].description;
-                        script.Price = addedItemsList[i].price;
-                        script.Ñurrency = addedItemsList[i].currency;
-                        script.Image = addedItemsList[i].image;
-                        script.Place = addedItemsList[i].place;
-                        script.Health = addedItemsList[i].health;
-                        script.Power = addedItemsList[i].power;
-                        script.XPower = addedItemsList[i].xPower;
-                        break;
+                            DragDrop script = ItemAddedBox.gameObject.GetComponent<DragDrop>();
+                            script.ThisAddedItem = true;
+                            script.Id = addedItemsList[i].id;
+                            script.Title = addedItemsList[i].title;
+                            script.Description = addedItemsList[i].description;
+                            script.Price = addedItemsList[i].price;
+                            script.Ñurrency = addedItemsList[i].currency;
+                            script.Image = addedItemsList[i].image;
+                            script.Place = addedItemsList[i].place;
+                            script.Health = addedItemsList[i].health;
+                            script.Power = addedItemsList[i].power;
+                            script.XPower = addedItemsList[i].xPower;
+                            break;
+                        }
+
+                            
                     }
                 }
                 count++;

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
-public class AddedItems {
+public class AddedItems : IGet, IDelete, IUploadAddedItem
+{
 
     // Use a constant for the base URL
     private const string BaseUrl = "https://localhost:7139/api/";

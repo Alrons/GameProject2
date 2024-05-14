@@ -118,7 +118,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         scrollRect.vertical = false;
         //image.raycastTarget = false;
         startPos = dragObject.transform.position; // Берем координаты изначальной позиций и запоминаем
-        
+        form.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.3f);//подсветка
+
 
 
 
@@ -151,6 +152,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             }
             
         }
+        form.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.1f);//подсветка
 
         this.transform.position = startPos;// возвращение на место если условие не верно 
     }

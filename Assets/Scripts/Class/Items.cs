@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Items: IGet
+public class Items: IGet, IDelete, IUploadItem
 {
     private readonly HttpClient _httpClient;
 
