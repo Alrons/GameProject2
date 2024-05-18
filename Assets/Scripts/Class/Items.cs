@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Items: IGet, IDelete, IUploadItem
+public class Items
 {
     private readonly HttpClient _httpClient;
 
@@ -50,6 +50,7 @@ public class Items: IGet, IDelete, IUploadItem
             throw; // re-throw the exception
         }
     }
+    // !
     public async Task<bool> Upload(ItemModel model)
     {
         try

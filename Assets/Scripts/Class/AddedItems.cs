@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
-public class AddedItems : IGet, IDelete, IUploadAddedItem
+public class AddedItems 
 {
 
     // Use a constant for the base URL

@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 namespace Assets.Scripts.Class
 {
-    internal class SizeTable : IGet
+    internal class SizeTable
     {
         private readonly HttpClient _httpClient;
         private string _url;
