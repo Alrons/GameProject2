@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using Unity.VisualScripting;
+using Assets.Scripts.Class;
 
 
 public class ForDelete : MonoBehaviour, IPointerClickHandler
@@ -28,10 +29,9 @@ public class ForDelete : MonoBehaviour, IPointerClickHandler
         if (DragDropScript.ThisAddedItem)
         {
 
-            Items items = new Items();
-            AddedItems addedItems = new AddedItems();
-            addedItems.Delete(DragDropScript.Id);
-            bool Cheak = await items.Upload(new ItemModel(DragDropScript.Id, DragDropScript.Title, DragDropScript.Description, DragDropScript.Price, DragDropScript.Сurrency, DragDropScript.Image, DragDropScript.Place, DragDropScript.Health, DragDropScript.Power, DragDropScript.XPower));
+            ItemService ItemService = new ItemService();
+            ItemService.DeleteAddedItem(DragDropScript.Id);
+            bool Cheak = await ItemService.PostItem(new ItemModel(DragDropScript.Id, DragDropScript.Title, DragDropScript.Description, DragDropScript.Price, DragDropScript.Сurrency, DragDropScript.Image, DragDropScript.Place, DragDropScript.Health, DragDropScript.Power, DragDropScript.XPower));
             if (Cheak)
             {
                 refrash.RefreshItemsInShop();

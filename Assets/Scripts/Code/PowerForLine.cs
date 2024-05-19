@@ -13,6 +13,11 @@ public class PowerForLine : MonoBehaviour
 
     private SpawnObject spawnObject;
 
+    private void Start()
+    {
+        OneLine.text = "0";
+    }
+
 
     public void Ñalculating_line_capacity () 
     {

@@ -1,7 +1,7 @@
 
+using System.Collections;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +12,15 @@ using UnityEngine.Networking;
 using UnityEngine.UIElements;
 using Assets.Scripts.Class;
 using Assets.Scripts.Models;
+using Newtonsoft.Json;
+using SimpleJSON;
+
+
 
 public class SpawnObject : MonoBehaviour
 {
     public List<AddedItemModel> addedItemsList = new List<AddedItemModel>();
+    public List<AddedItemsModelTest> Test = new List<AddedItemsModelTest>();
     public List<ItemModel> AllItems = new List<ItemModel>();
     public List<SizeTableModel> sizeTable = new List<SizeTableModel>();
 
@@ -26,84 +31,39 @@ public class SpawnObject : MonoBehaviour
 
     public GameObject PlaseDrop;
     public Transform CanvasPlaseDrop;
-    public Text ForLine;
+    public UnityEngine.UI.Text ForLine;
 
-    public Text Title;
-    public Text Price;
-    public Text Description;
-    public Text Health;
-    public Text Power;
-    public Text XPower;
+    public UnityEngine.UI.Text Title;
+    public UnityEngine.UI.Text Price;
+    public UnityEngine.UI.Text Description;
+    public UnityEngine.UI.Text Health;
+    public UnityEngine.UI.Text Power;
+    public UnityEngine.UI.Text XPower;
 
     
     Tests tester = new Tests("SpawnObject");
-    AddedItems addedItems = new AddedItems();
-    Items Items = new Items();
-    SizeTable SizeTable = new SizeTable(); 
+    ItemService ItemService = new ItemService();
     async void Start()
     {
-
-        string AddedItemJson = await addedItems.Get();
+        string AddedItemJson = await ItemService.GetAddedItem();
 
         tester.StringLength(AddedItemJson, 10);
 
-        SimpleJSON.JSONNode AddedItemstats = SimpleJSON.JSON.Parse(AddedItemJson);
-        for (int i = 0; i < AddedItemstats.Count; i++)
-        {
-            addedItemsList.Add(new AddedItemModel
-            (
-                AddedItemstats[i]["id"],
-                AddedItemstats[i]["userId"],
-                AddedItemstats[i]["title"],
-                AddedItemstats[i]["description"],
-                AddedItemstats[i]["price"],
-                AddedItemstats[i]["ñurrency"],
-                AddedItemstats[i]["image"],
-                AddedItemstats[i]["place"],
-                AddedItemstats[i]["health"],
-                AddedItemstats[i]["power"],
-                AddedItemstats[i]["xPover"]
-            ));
-        }
+        addedItemsList = JsonConvert.DeserializeObject<List<AddedItemModel>>(AddedItemJson);
         
-        string ItemJson = await Items.Get();
+        string ItemJson = await ItemService.GetItem();
+
+        AllItems = JsonConvert.DeserializeObject<List<ItemModel>>(ItemJson);
 
         tester.StringLength(ItemJson, 10);
 
-        SimpleJSON.JSONNode Itemstats = SimpleJSON.JSON.Parse(ItemJson);
-        for (int i = 0; i < Itemstats.Count; i++)
-        {
-            AllItems.Add(new ItemModel
-            (
-                Itemstats[i]["id"],
-                Itemstats[i]["title"],
-                Itemstats[i]["description"],
-                Itemstats[i]["price"],
-                Itemstats[i]["ñurrency"],
-                Itemstats[i]["image"],
-                Itemstats[i]["place"],
-                Itemstats[i]["health"],
-                Itemstats[i]["power"],
-                Itemstats[i]["xPover"]
-            ));
-            
-        }
-        string SizeTableJson = await SizeTable.Get();
+        string SizeTableJson = await ItemService.GetSizeTable();
 
         tester.StringLength(SizeTableJson, 10);
 
-        SimpleJSON.JSONNode SizeTablestats = SimpleJSON.JSON.Parse(SizeTableJson);
-        for (int i = 0; i < SizeTablestats.Count; i++)
-        {
-            sizeTable.Add(new SizeTableModel
-            (
-                SizeTablestats[i]["height"],
-                SizeTablestats[i]["width"]
-                
-            ));
-        }
-        Initializing();
+        sizeTable = JsonConvert.DeserializeObject<List<SizeTableModel>>(SizeTableJson);
 
+        Initializing();
 
     }
 
@@ -200,12 +160,12 @@ public class SpawnObject : MonoBehaviour
                         if (addedItemsList[i].place <= (sizeTable[^1].height * sizeTable[^1].width))
                         {
                             Transform ItemAddedBox = CopyPref(Box, child.transform.position, child).transform;
-                            ItemAddedBox.GetComponentsInChildren<Text>()[0].text = $"{addedItemsList[i].title}";
-                            ItemAddedBox.GetComponentsInChildren<Text>()[1].text = $"{addedItemsList[i].health}";
-                            ItemAddedBox.GetComponentsInChildren<Text>()[2].text = $"{addedItemsList[i].xPower}";
-                            ItemAddedBox.GetComponentsInChildren<Text>()[3].text = $"{addedItemsList[i].price}";
-                            ItemAddedBox.GetComponentsInChildren<Text>()[4].text = $"{addedItemsList[i].power}";
-                            ItemAddedBox.GetComponentsInChildren<Text>()[5].text = $"{addedItemsList[i].description}";
+                            ItemAddedBox.GetComponentsInChildren<UnityEngine.UI.Text>()[0].text = $"{addedItemsList[i].title}";
+                            ItemAddedBox.GetComponentsInChildren<UnityEngine.UI.Text>()[1].text = $"{addedItemsList[i].health}";
+                            ItemAddedBox.GetComponentsInChildren<UnityEngine.UI.Text>()[2].text = $"{addedItemsList[i].xPower}";
+                            ItemAddedBox.GetComponentsInChildren<UnityEngine.UI.Text>()[3].text = $"{addedItemsList[i].price}";
+                            ItemAddedBox.GetComponentsInChildren<UnityEngine.UI.Text>()[4].text = $"{addedItemsList[i].power}";
+                            ItemAddedBox.GetComponentsInChildren<UnityEngine.UI.Text>()[5].text = $"{addedItemsList[i].description}";
 
                             DragDrop script = ItemAddedBox.gameObject.GetComponent<DragDrop>();
                             script.ThisAddedItem = true;

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
+using Newtonsoft.Json;
 
 public class Refrash : MonoBehaviour
 {
@@ -25,9 +26,7 @@ public class Refrash : MonoBehaviour
     private SpawnObject spawnObject;
 
     Tests tester = new Tests("SpawnObject");
-    AddedItems addedItems = new AddedItems();
-    Items Items = new Items();
-    SizeTable SizeTable = new SizeTable();
+    ItemService ItemService = new ItemService();
 
 
     public void Start()
@@ -66,28 +65,12 @@ public class Refrash : MonoBehaviour
     public async void RefreshPlaseforDrop()
     {
         spawnObject.addedItemsList.Clear(); 
-        string AddedItemJson = await addedItems.Get();
+        string AddedItemJson = await ItemService.GetAddedItem();
 
         tester.StringLength(AddedItemJson, 10);
 
-        SimpleJSON.JSONNode AddedItemstats = SimpleJSON.JSON.Parse(AddedItemJson);
-        for (int i = 0; i < AddedItemstats.Count; i++)
-        {
-            spawnObject.addedItemsList.Add(new AddedItemModel
-            (
-                AddedItemstats[i]["id"],
-                AddedItemstats[i]["userId"],
-                AddedItemstats[i]["title"],
-                AddedItemstats[i]["description"],
-                AddedItemstats[i]["price"],
-                AddedItemstats[i]["ñurrency"],
-                AddedItemstats[i]["image"],
-                AddedItemstats[i]["place"],
-                AddedItemstats[i]["health"],
-                AddedItemstats[i]["power"],
-                AddedItemstats[i]["xPover"]
-            ));
-        }
+        spawnObject.addedItemsList = JsonConvert.DeserializeObject<List<AddedItemModel>>(AddedItemJson);
+        
         int Count = 1;
         foreach (var child in from Transform child in RefrashCunvas
                               where child.name == "PlaceForDrop(Clone)"
@@ -125,36 +108,19 @@ public class Refrash : MonoBehaviour
                     script.XPower = spawnObject.addedItemsList[JustNumber].xPower;
                 }
             }
-
             Count++;
         }
     }
     public async void RefreshItemsInShop()
     {
-        string ItemJson = await Items.Get();
+        string ItemJson = await ItemService.GetItem();
 
         tester.StringLength(ItemJson, 10);
 
         spawnObject.AllItems.Clear();
 
-        SimpleJSON.JSONNode Itemstats = SimpleJSON.JSON.Parse(ItemJson);
-        for (int i = 0; i < Itemstats.Count; i++)
-        {
-            spawnObject.AllItems.Add(new ItemModel
-            (
-                Itemstats[i]["id"],
-                Itemstats[i]["title"],
-                Itemstats[i]["description"],
-                Itemstats[i]["price"],
-                Itemstats[i]["ñurrency"],
-                Itemstats[i]["image"],
-                Itemstats[i]["place"],
-                Itemstats[i]["health"],
-                Itemstats[i]["power"],
-                Itemstats[i]["xPover"]
-            ));
+        spawnObject.AllItems = JsonConvert.DeserializeObject<List<ItemModel>>(ItemJson);
 
-        }
         foreach (Transform child in ContentShop.transform)
         {
             Destroy(child.gameObject);

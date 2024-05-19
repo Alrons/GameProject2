@@ -1,3 +1,4 @@
+using Assets.Scripts.Class;
 using Assets.Scripts.Models;
 using System.Collections;
 using System.Collections.Generic;
@@ -139,11 +140,10 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         {
             if (formIsFull)
             {
-                Items items = new Items();
-                AddedItems addedItems = new AddedItems();
+                ItemService itemService = new ItemService();
 
 
-                bool check = await addedItems.Upload(new AddedItemModel(Id, 1, Title, Description,Price,Ñurrency,Image,Place,Health,Power,XPower));
+                bool check = await itemService.PostAddedItem(new AddedItemModel(Id, 1, Title, Description,Price,Ñurrency,Image,Place,Health,Power,XPower));
                 Refreshing(check);
 
                 Destroy(dragObject);
@@ -158,10 +158,10 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     }
     private async void Refreshing(bool check)
     {
-        Items items = new Items();
+        ItemService itemService = new ItemService();
         if (check)
         {
-            if (await items.Delete(Id))
+            if (await itemService.DeleteItem(Id))
             {
                 Refrash.RefreshPlaseforDrop();
             }

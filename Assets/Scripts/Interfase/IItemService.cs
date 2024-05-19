@@ -10,10 +10,16 @@ namespace Assets.Scripts.Interfase
     {
         Task<string> GetItem();
 
-        Task<bool> CreateItem(ItemModel model);
+        Task<string> GetAddedItem();
 
-        Task<bool> AddItem(AddedItemModel model);
+        Task<string> GetSizeTable();
+
+        Task<bool> PostItem(ItemModel model);
+
+        Task<bool> PostAddedItem(AddedItemModel model);
 
         Task<bool> DeleteItem(int id);
+
+        Task<bool> DeleteAddedItem(int id);
     }
 }
