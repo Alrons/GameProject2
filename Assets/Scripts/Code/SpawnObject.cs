@@ -139,6 +139,8 @@ public class SpawnObject : MonoBehaviour
             var spawn = Instantiate(ForLine, new Vector3(PlaseDrop.transform.position.x + x * l, PlaseDrop.transform.position.y + y * i, PlaseDrop.transform.position.z), Quaternion.identity);
             spawn.transform.SetParent(CanvasPlaseDrop.transform);
             spawn.transform.localScale = new Vector3(1, 1, 1);
+            spawn.GetComponent<PowerForLine>().NumberLine = i;
+            spawn.GetComponent<PowerForLine>().Ñalculating_line_capacity();
         }
 
         Destroy(PlaseDrop);

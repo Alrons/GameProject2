@@ -40,9 +40,18 @@ namespace Assets.Scripts.Class
         {
             try
             {
+                HttpResponseMessage response = default;
+                bool requestStatus = false;
                 // Use the BaseUrl constant
-                var response = await _httpClient.DeleteAsync($"{BaseUrl}{_AddedItemsUrl}{id}");
-                return response.IsSuccessStatusCode;
+                for (int i = 0; i<2;i++)
+                {
+                    response = await _httpClient.DeleteAsync($"{BaseUrl}{_AddedItemsUrl}{id}");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        requestStatus = true;
+                    }
+                }
+                return requestStatus;
             }
             catch (HttpRequestException ex)
             {
@@ -55,8 +64,19 @@ namespace Assets.Scripts.Class
         {
             try
             {
-                var response = await _httpClient.DeleteAsync($"{BaseUrl}{_Items}{id}");
-                return response.IsSuccessStatusCode;
+                HttpResponseMessage response = default;
+                bool requestStatus = false;
+                // Use the BaseUrl constant
+                for (int i = 0; i < 2; i++)
+                {
+                    response = await _httpClient.DeleteAsync($"{BaseUrl}{_Items}{id}");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        requestStatus = true;
+                    }
+                }
+                    
+                return requestStatus;
             }
             catch (HttpRequestException ex)
             {
@@ -69,7 +89,11 @@ namespace Assets.Scripts.Class
         {
             try
             {
-                var response = await _httpClient.GetAsync(_AddedItemsUrl);
+                HttpResponseMessage response = default;
+                for (int i = 0; i < 2; i++)
+                {
+                    response = await _httpClient.GetAsync(_AddedItemsUrl);
+                }
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStringAsync();
             }
@@ -84,7 +108,15 @@ namespace Assets.Scripts.Class
         {
             try
             {
-                var response = await _httpClient.GetAsync(_Items);
+                HttpResponseMessage response = default;
+                for (int i = 0; i < 2; i++)
+                {
+                    response = await _httpClient.GetAsync(_Items);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        break;
+                    }
+                }
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStringAsync();
 
@@ -100,7 +132,15 @@ namespace Assets.Scripts.Class
         {
             try
             {
-                var response = await _httpClient.GetAsync(_SizeTables);
+                HttpResponseMessage response = default;
+                for (int i = 0; i < 2; i++)
+                {
+                    response = await _httpClient.GetAsync(_SizeTables);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        break;
+                    }
+                }
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStringAsync();
 

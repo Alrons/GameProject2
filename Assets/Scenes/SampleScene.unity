@@ -670,6 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addedItemsList: []
+  Test: []
   Box: {fileID: 1137503844}
   CanvasObject: {fileID: 977933510}
   PlaseDrop: {fileID: 163091973}
@@ -1574,6 +1575,7 @@ GameObject:
   - component: {fileID: 1007147157}
   - component: {fileID: 1007147156}
   - component: {fileID: 1007147155}
+  - component: {fileID: 1007147158}
   m_Layer: 0
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -1642,6 +1644,20 @@ RectTransform:
   m_AnchoredPosition: {x: -634, y: -786}
   m_SizeDelta: {x: 186.94, y: 32.71}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1007147158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007147154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4663fde9a0ab9304f96eda6c1328255a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 519420028}
+  OneLine: {fileID: 1007147155}
 --- !u!1 &1137503844 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1993356884603921908, guid: 032a72cfc45569047a538913e5ea1311, type: 3}
