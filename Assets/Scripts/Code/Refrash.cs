@@ -47,13 +47,12 @@ public class Refrash : MonoBehaviour
         }
 
     }
-    private void RefreshLinePower()
+    public void RefreshLinePower()
     {
         foreach (Transform transform in RefrashCunvas)
         {
             if (transform.name == "Text (Legacy)(Clone)")
             {
-                Debug.Log(1);
                 transform.GetComponent<PowerForLine>().Ñalculating_line_capacity();
             }
         }
@@ -72,7 +71,7 @@ public class Refrash : MonoBehaviour
         }
         return -1;
     }
-    private async Task<bool> RefrachLists()
+    public async Task<bool> RefrachLists()
     {
         string AddedItemJson = await ItemService.GetAddedItem();
 
@@ -140,9 +139,9 @@ public class Refrash : MonoBehaviour
     }
     public async Task<bool> RefreshItemsInShop()
     {
-
         if (await RefrachLists())
         {
+
             foreach (Transform child in ContentShop.transform)
             {
                 Destroy(child.gameObject);
@@ -175,8 +174,6 @@ public class Refrash : MonoBehaviour
                 }
                 count++;
             }
-
-            RefreshLinePower();
         }
         return true;
     } 

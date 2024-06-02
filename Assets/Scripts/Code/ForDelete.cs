@@ -35,6 +35,8 @@ public class ForDelete : MonoBehaviour, IPointerClickHandler
             if (Cheak)
             {
                 refrash.RefreshItemsInShop();
+                refrash.RefreshLinePower();
+                
                 
             }
             

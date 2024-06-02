@@ -24,6 +24,8 @@ namespace Assets.Scripts.Class
 
         private readonly string _SizeTables;
 
+        private readonly string _OurTables;
+
         // Use a private field for the Refrash component
 
         public ItemService()
@@ -35,6 +37,7 @@ namespace Assets.Scripts.Class
             _AddedItemsUrl = "AddedItems/";
             _Items = "Items/";
             _SizeTables = "SizeTables/";
+            _OurTables = "OurTables/";
         }
         public async Task<bool> DeleteAddedItem(int id)
         {
@@ -151,6 +154,29 @@ namespace Assets.Scripts.Class
                 throw; // re-throw the exception
             }
         }
+        public async Task<string> GetOurTables()
+        {
+            try
+            {
+                HttpResponseMessage response = default;
+                for (int i = 0; i < 2; i++)
+                {
+                    response = await _httpClient.GetAsync(_OurTables);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        break;
+                    }
+                }
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+
+            }
+            catch (HttpRequestException ex)
+            {
+                Debug.LogError($"Error getting added items: {ex.Message}");
+                throw; // re-throw the exception
+            }
+        }
 
         public async Task<bool> PostAddedItem(AddedItemModel model)
         {
@@ -191,5 +217,6 @@ namespace Assets.Scripts.Class
                 throw; // re-throw the exception
             }
         }
+
     }
 }

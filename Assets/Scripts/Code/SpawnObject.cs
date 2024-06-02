@@ -23,6 +23,7 @@ public class SpawnObject : MonoBehaviour
     public List<AddedItemsModelTest> Test = new List<AddedItemsModelTest>();
     public List<ItemModel> AllItems = new List<ItemModel>();
     public List<SizeTableModel> sizeTable = new List<SizeTableModel>();
+    public List<OurTablesModel> ourTables = new List<OurTablesModel>();
 
     private int count;
 
@@ -31,8 +32,8 @@ public class SpawnObject : MonoBehaviour
 
     public GameObject PlaseDrop;
     public Transform CanvasPlaseDrop;
-    public UnityEngine.UI.Text ForLine;
 
+    public UnityEngine.UI.Text ForLine;
     public UnityEngine.UI.Text Title;
     public UnityEngine.UI.Text Price;
     public UnityEngine.UI.Text Description;
@@ -43,6 +44,10 @@ public class SpawnObject : MonoBehaviour
     
     Tests tester = new Tests("SpawnObject");
     ItemService ItemService = new ItemService();
+    private Grid grid;
+    public GameObject MainCamera;
+    public GameObject plasePrefub;
+    public Transform plase;
     async void Start()
     {
         string AddedItemJson = await ItemService.GetAddedItem();
@@ -62,6 +67,12 @@ public class SpawnObject : MonoBehaviour
         tester.StringLength(SizeTableJson, 10);
 
         sizeTable = JsonConvert.DeserializeObject<List<SizeTableModel>>(SizeTableJson);
+
+        string OurTablseJson = await ItemService.GetOurTables();
+
+        tester.StringLength(OurTablseJson, 10);
+
+        ourTables = JsonConvert.DeserializeObject<List<OurTablesModel>>(OurTablseJson);
 
         Initializing();
 
@@ -142,9 +153,47 @@ public class SpawnObject : MonoBehaviour
             spawn.GetComponent<PowerForLine>().NumberLine = i;
             spawn.GetComponent<PowerForLine>().Сalculating_line_capacity();
         }
-
         Destroy(PlaseDrop);
         Destroy(ForLine);
+        Debug.Log(ourTables.Count);
+        foreach (OurTablesModel Tables in ourTables)
+        {
+            CreateTableWithDrag(Tables.Width, Tables.Height, 40f,0, new Vector3((float)Tables.PosX, (float)Tables.PosY, 0), plasePrefub, plase);
+        }
+
+    }
+
+    // ширина, высота, размер ячейки, поворот в градусах, где спавним, префаб ячейки, префаб задней стенки
+    private void CreateTableWithDrag(int width, int height, float cellSize, int degrees, Vector3 SpawnPoint, GameObject plasePrefub, Transform plase)
+    {
+        GameObject OurBackTable = CopyPrefForTables(plase.gameObject, SpawnPoint, MainCamera.transform);
+
+        OurBackTable.transform.localScale = new Vector3(width * cellSize * 2, height * cellSize);
+
+        Vector3 position = OurBackTable.transform.position;
+        Vector3 scale = OurBackTable.transform.localScale;
+        Quaternion rotation = OurBackTable.transform.rotation;
+
+        // Рассчитаем нижний левый угол объекта в локальных координатах
+        Vector3 bottomLeftLocal = new Vector3(-0.5f * scale.x, -0.5f * scale.y, -0.5f * scale.z);
+
+        Vector3 bottomLeftWorld = rotation * bottomLeftLocal;
+
+        // Добавим позицию объекта
+        bottomLeftWorld += position;
+
+        grid = new Grid(width, height, cellSize, bottomLeftWorld, plasePrefub, OurBackTable.transform);
+        // поворот в градусах
+        OurBackTable.transform.Rotate(0, 0, degrees);
+    }
+    public GameObject CopyPrefForTables(GameObject box, Vector3 position, Transform setparent)
+    {
+        var spawn = UnityEngine.Object.Instantiate(box, position, Quaternion.identity);
+        spawn.transform.SetParent(setparent.transform);
+        spawn.transform.localScale = new Vector3(10f, (float)0.35, (float)0.35);
+
+        return spawn;
+
     }
     private void InitializingAddedItems()
     {

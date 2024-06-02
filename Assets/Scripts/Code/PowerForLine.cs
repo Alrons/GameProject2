@@ -13,32 +13,40 @@ public class PowerForLine : MonoBehaviour
     public int NumberLine {  get; set; }
 
     private SpawnObject spawnObject;
-    public void Ñalculating_line_capacity () 
+    private Refrash refrash;
+
+    public async void Ñalculating_line_capacity () 
     {
+        spawnObject = MainCamera.GetComponent<SpawnObject>();
+        refrash = MainCamera.GetComponent<Refrash>();  
         int OurPower = 0;
         int CountLine = 0;
-        
-        spawnObject = MainCamera.GetComponent<SpawnObject> ();
-        for(int i = 0; i < spawnObject.sizeTable[^1].width * spawnObject.sizeTable[^1].height; i++)
+        if (await refrash.RefrachLists())
         {
-            if (CountLine-1 == NumberLine)
+            for (int i = 0; i < spawnObject.sizeTable[^1].width * spawnObject.sizeTable[^1].height; i++)
             {
-                
-                for (int j = 0; j < spawnObject.addedItemsList.Count; j++)
+                if (CountLine - 1 == NumberLine)
                 {
-                    if (i == spawnObject.addedItemsList[j].place)
+
+                    for (int j = 0; j < spawnObject.addedItemsList.Count; j++)
                     {
-                        OurPower += spawnObject.addedItemsList[j].power;
+                        if (i == spawnObject.addedItemsList[j].place)
+                        {
+                            OurPower += spawnObject.addedItemsList[j].power;
+                        }
                     }
                 }
+                if (i % spawnObject.sizeTable[^1].width == 0)
+                {
+                    CountLine++;
+
+                }
             }
-            if (i % spawnObject.sizeTable[^1].width == 0)
-            {
-                CountLine++;
-                
-            }
+            OneLine.text = $"{OurPower}";
         }
-        OneLine.text = $"{OurPower}";
+
+
+        
 
     }
 

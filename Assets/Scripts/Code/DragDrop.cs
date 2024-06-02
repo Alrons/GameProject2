@@ -163,7 +163,11 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         {
             if (await itemService.DeleteItem(Id))
             {
-                Refrash.RefreshPlaseforDrop();
+                if (await Refrash.RefreshPlaseforDrop())
+                {
+                    Refrash.RefreshItemsInShop();
+                }
+               
             }
         }
         
