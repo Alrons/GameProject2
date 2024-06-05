@@ -56,17 +56,23 @@ public class SpawnObject : MonoBehaviour
 
         addedItemsList = JsonConvert.DeserializeObject<List<AddedItemModel>>(AddedItemJson);
         
+
+
         string ItemJson = await ItemService.GetItem();
 
         AllItems = JsonConvert.DeserializeObject<List<ItemModel>>(ItemJson);
 
         tester.StringLength(ItemJson, 10);
 
+
+
         string SizeTableJson = await ItemService.GetSizeTable();
 
         tester.StringLength(SizeTableJson, 10);
 
         sizeTable = JsonConvert.DeserializeObject<List<SizeTableModel>>(SizeTableJson);
+
+
 
         string OurTablseJson = await ItemService.GetOurTables();
 
@@ -133,112 +139,56 @@ public class SpawnObject : MonoBehaviour
     }
     private void InitializingTable()
     {
-        float x = (float)(PlaseDrop.transform.position.x * -0.8);
-        float y = (float)(PlaseDrop.transform.position.y * -0.5);
-        tester.Print($"{sizeTable[0].width}");
-        tester.IntRange(sizeTable[0].width, 2);
-        tester.IntRange(sizeTable[0].height, 2);
-        for (int i = 0; i < sizeTable[0].width; i++)
-        {
-            tester.ForStart("InitializingItems", i, sizeTable[0].width);
-            int l = 0;
-            for (int j = 0; j < sizeTable[0].height; j++)
-            {
-                CopyPref(PlaseDrop, new Vector2(PlaseDrop.transform.position.x + x * j, PlaseDrop.transform.position.y + y * i), CanvasPlaseDrop);
-                l = j + 1;
-            }
-            var spawn = Instantiate(ForLine, new Vector3(PlaseDrop.transform.position.x + x * l, PlaseDrop.transform.position.y + y * i, PlaseDrop.transform.position.z), Quaternion.identity);
-            spawn.transform.SetParent(CanvasPlaseDrop.transform);
-            spawn.transform.localScale = new Vector3(1, 1, 1);
-            spawn.GetComponent<PowerForLine>().NumberLine = i;
-            spawn.GetComponent<PowerForLine>().Сalculating_line_capacity();
-        }
-        Destroy(PlaseDrop);
-        Destroy(ForLine);
-        Debug.Log(ourTables.Count);
+        TableCreator tableCreator = MainCamera.GetComponent<TableCreator>();
         foreach (OurTablesModel Tables in ourTables)
         {
-            CreateTableWithDrag(Tables.Width, Tables.Height, 40f,0, new Vector3((float)Tables.PosX, (float)Tables.PosY, 0), plasePrefub, plase);
+            tableCreator.CreateTable(Tables.Width, Tables.Height,new Vector3 ((float)Tables.PosX, (float)Tables.PosY),0);
         }
 
     }
 
-    // ширина, высота, размер ячейки, поворот в градусах, где спавним, префаб ячейки, префаб задней стенки
-    private void CreateTableWithDrag(int width, int height, float cellSize, int degrees, Vector3 SpawnPoint, GameObject plasePrefub, Transform plase)
-    {
-        GameObject OurBackTable = CopyPrefForTables(plase.gameObject, SpawnPoint, MainCamera.transform);
 
-        OurBackTable.transform.localScale = new Vector3(width * cellSize * 2, height * cellSize);
-
-        Vector3 position = OurBackTable.transform.position;
-        Vector3 scale = OurBackTable.transform.localScale;
-        Quaternion rotation = OurBackTable.transform.rotation;
-
-        // Рассчитаем нижний левый угол объекта в локальных координатах
-        Vector3 bottomLeftLocal = new Vector3(-0.5f * scale.x, -0.5f * scale.y, -0.5f * scale.z);
-
-        Vector3 bottomLeftWorld = rotation * bottomLeftLocal;
-
-        // Добавим позицию объекта
-        bottomLeftWorld += position;
-
-        grid = new Grid(width, height, cellSize, bottomLeftWorld, plasePrefub, OurBackTable.transform);
-        // поворот в градусах
-        OurBackTable.transform.Rotate(0, 0, degrees);
-    }
-    public GameObject CopyPrefForTables(GameObject box, Vector3 position, Transform setparent)
-    {
-        var spawn = UnityEngine.Object.Instantiate(box, position, Quaternion.identity);
-        spawn.transform.SetParent(setparent.transform);
-        spawn.transform.localScale = new Vector3(10f, (float)0.35, (float)0.35);
-
-        return spawn;
-
-    }
     private void InitializingAddedItems()
     {
 
-        int count = 1;
-        foreach (Transform child in CanvasPlaseDrop.transform)
+        TableCreator tableCreator = MainCamera.GetComponent<TableCreator>();
+        int Count = 1;
+        foreach (GameObject gameobj in tableCreator.ourCell)
         {
-            
-            if (child.name == "PlaceForDrop(Clone)")
+
+            foreach (Transform children in gameobj.transform)
             {
-                for (int i = 0; i < addedItemsList.Count; i++)
-                {
-                    if (count == addedItemsList[i].place)
-                    {
-                        if (addedItemsList[i].place <= (sizeTable[^1].height * sizeTable[^1].width))
-                        {
-                            Transform ItemAddedBox = CopyPref(Box, child.transform.position, child).transform;
-                            ItemAddedBox.GetComponentsInChildren<UnityEngine.UI.Text>()[0].text = $"{addedItemsList[i].title}";
-                            ItemAddedBox.GetComponentsInChildren<UnityEngine.UI.Text>()[1].text = $"{addedItemsList[i].health}";
-                            ItemAddedBox.GetComponentsInChildren<UnityEngine.UI.Text>()[2].text = $"{addedItemsList[i].xPower}";
-                            ItemAddedBox.GetComponentsInChildren<UnityEngine.UI.Text>()[3].text = $"{addedItemsList[i].price}";
-                            ItemAddedBox.GetComponentsInChildren<UnityEngine.UI.Text>()[4].text = $"{addedItemsList[i].power}";
-                            ItemAddedBox.GetComponentsInChildren<UnityEngine.UI.Text>()[5].text = $"{addedItemsList[i].description}";
-
-                            DragDrop script = ItemAddedBox.gameObject.GetComponent<DragDrop>();
-                            script.ThisAddedItem = true;
-                            script.Id = addedItemsList[i].id;
-                            script.Title = addedItemsList[i].title;
-                            script.Description = addedItemsList[i].description;
-                            script.Price = addedItemsList[i].price;
-                            script.Сurrency = addedItemsList[i].currency;
-                            script.Image = addedItemsList[i].image;
-                            script.Place = addedItemsList[i].place;
-                            script.Health = addedItemsList[i].health;
-                            script.Power = addedItemsList[i].power;
-                            script.XPower = addedItemsList[i].xPower;
-                            break;
-                        }
-
-                            
-                    }
-                }
-                count++;
+                Destroy(children.gameObject);
             }
-            
+
+            for (int i = 0; i < addedItemsList.Count; i++)
+            {
+                if (addedItemsList[i].place == Count)
+                {
+                    Title.text = addedItemsList[i].title;
+                    Price.text = $"{addedItemsList[i].price}";
+                    Description.text = addedItemsList[i].description;
+                    Health.text = $"{addedItemsList[i].health}";
+                    Power.text = $"{addedItemsList[i].power}";
+                    XPower.text = $"{addedItemsList[i].xPower}";
+                    DragDrop script = CopyPref(Box, gameobj.transform.position, gameobj.transform).GetComponent<DragDrop>();
+                    script.ThisAddedItem = true;
+                    script.Id = addedItemsList[i].id;
+                    script.Title = addedItemsList[i].title;
+                    script.Description = addedItemsList[i].description;
+                    script.Price = addedItemsList[i].price;
+                    script.Сurrency = addedItemsList[i].currency;
+                    script.Image = addedItemsList[i].image;
+                    script.Place = addedItemsList[i].place;
+                    script.Health = addedItemsList[i].health;
+                    script.Power = addedItemsList[i].power;
+                    script.XPower = addedItemsList[i].xPower;
+                    break;
+                }
+
+            }
+            Count++;
+
         }
     }
 

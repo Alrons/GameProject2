@@ -58,19 +58,7 @@ public class Refrash : MonoBehaviour
         }
     }
 
-    private int ForThisPlase(int count)
-    {
-        int counting = 0;
-        foreach (AddedItemModel item in spawnObject.addedItemsList) 
-        {
-            if (count == item.place)
-            {
-                return counting;
-            }
-            counting++;
-        }
-        return -1;
-    }
+   
     public async Task<bool> RefrachLists()
     {
         string AddedItemJson = await ItemService.GetAddedItem();
@@ -91,52 +79,57 @@ public class Refrash : MonoBehaviour
 
     public async Task<bool> RefreshPlaseforDrop()
     {
-        if(await RefrachLists()){
+    
+        if(await RefrachLists())
+        {
             
-
+            TableCreator tableCreator = MainCamera.GetComponent<TableCreator>();
             int Count = 1;
-            foreach (var child in from Transform child in RefrashCunvas
-                                  where child.name == "PlaceForDrop(Clone)"
-                                  select child)
+            foreach (GameObject gameobj in tableCreator.ourCell)
             {
 
-                foreach (Transform children in child)
+                foreach (Transform children in gameobj.transform)
                 {
                     Destroy(children.gameObject);
                 }
 
-                int JustNumber = ForThisPlase(Count);
-                if (JustNumber == -1) ;
-                else
+                for (int i = 0; i < spawnObject.addedItemsList.Count; i++)
                 {
-                    if (spawnObject.addedItemsList[JustNumber].place <= (spawnObject.sizeTable[^1].height * spawnObject.sizeTable[^1].width))
+                    if (spawnObject.addedItemsList[i].place == Count)
                     {
-                        Title.text = spawnObject.addedItemsList[JustNumber].title;
-                        Price.text = $"{spawnObject.addedItemsList[JustNumber].price}";
-                        Description.text = spawnObject.addedItemsList[JustNumber].description;
-                        Health.text = $"{spawnObject.addedItemsList[JustNumber].health}";
-                        Power.text = $"{spawnObject.addedItemsList[JustNumber].power}";
-                        XPower.text = $"{spawnObject.addedItemsList[JustNumber].xPower}";
-                        DragDrop script = spawnObject.CopyPref(PrefabObject, child.position, child).GetComponent<DragDrop>();
+                        Title.text = spawnObject.addedItemsList[i].title;
+                        Price.text = $"{spawnObject.addedItemsList[i].price}";
+                        Description.text = spawnObject.addedItemsList[i].description;
+                        Health.text = $"{spawnObject.addedItemsList[i].health}";
+                        Power.text = $"{spawnObject.addedItemsList[i].power}";
+                        XPower.text = $"{spawnObject.addedItemsList[i].xPower}";
+                        DragDrop script = spawnObject.CopyPref(PrefabObject, gameobj.transform.position, gameobj.transform).GetComponent<DragDrop>();
                         script.ThisAddedItem = true;
-                        script.Id = spawnObject.addedItemsList[JustNumber].id;
-                        script.Title = spawnObject.addedItemsList[JustNumber].title;
-                        script.Description = spawnObject.addedItemsList[JustNumber].description;
-                        script.Price = spawnObject.addedItemsList[JustNumber].price;
-                        script.Ñurrency = spawnObject.addedItemsList[JustNumber].currency;
-                        script.Image = spawnObject.addedItemsList[JustNumber].image;
-                        script.Place = spawnObject.addedItemsList[JustNumber].place;
-                        script.Health = spawnObject.addedItemsList[JustNumber].health;
-                        script.Power = spawnObject.addedItemsList[JustNumber].power;
-                        script.XPower = spawnObject.addedItemsList[JustNumber].xPower;
+                        script.Id = spawnObject.addedItemsList[i].id;
+                        script.Title = spawnObject.addedItemsList[i].title;
+                        script.Description = spawnObject.addedItemsList[i].description;
+                        script.Price = spawnObject.addedItemsList[i].price;
+                        script.Ñurrency = spawnObject.addedItemsList[i].currency;
+                        script.Image = spawnObject.addedItemsList[i].image;
+                        script.Place = spawnObject.addedItemsList[i].place;
+                        script.Health = spawnObject.addedItemsList[i].health;
+                        script.Power = spawnObject.addedItemsList[i].power;
+                        script.XPower = spawnObject.addedItemsList[i].xPower;
+                        break;
                     }
+                    
                 }
                 Count++;
+
             }
-            RefreshLinePower();
+                
         }
+        RefreshLinePower();
         return true;
     }
+        
+    
+
     public async Task<bool> RefreshItemsInShop()
     {
         if (await RefrachLists())

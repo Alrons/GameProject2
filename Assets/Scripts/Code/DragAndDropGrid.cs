@@ -1,23 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class DragAndDropGrid : MonoBehaviour
+public class DragAndDropGrid : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    private bool isDragging;
-    public void OnMouseDown()
+    private RectTransform recetTransform;
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        isDragging = true;
+        
     }
-    public void OnMouseUp()
+
+    public void OnDrag(PointerEventData eventData)
     {
-        isDragging = false;
+        recetTransform = GetComponent<RectTransform>();
+        recetTransform.anchoredPosition += eventData.delta;
     }
-    void Update()
+
+    public void OnEndDrag(PointerEventData eventData)
     {
-        if (isDragging)
-        {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position; transform.Translate(mousePosition);
-        }
+        
     }
 }

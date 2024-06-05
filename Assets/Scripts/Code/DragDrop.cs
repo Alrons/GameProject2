@@ -72,19 +72,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     {
         if (!DidTheFormSearchWork)
         {
-            int count = 1;
-            foreach (Transform child in CanfasWereDrop.transform)
-            {
-                if (child.name == "PlaceForDrop(Clone)")
-                {
-                    if (count == Place)
-                    {
-                        Debug.Log("FindForm: OK");
-                        form = child.gameObject;
-                    }
-                    count++;
-                }
-            }
+            TableCreator tableCreator = SciptSpawnObject.GetComponent<TableCreator>();
+            form = tableCreator.ourCell[Place - 1];
             DidTheFormSearchWork = true;
         }
         
@@ -119,7 +108,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         scrollRect.vertical = false;
         //image.raycastTarget = false;
         startPos = dragObject.transform.position; // Берем координаты изначальной позиций и запоминаем
-        form.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.3f);//подсветка
+        form.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.6f);//подсветка
 
 
 
