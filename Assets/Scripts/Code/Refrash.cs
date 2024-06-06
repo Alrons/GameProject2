@@ -58,7 +58,21 @@ public class Refrash : MonoBehaviour
         }
     }
 
-   
+    private int FindTableNumber(int NumberCell)
+    {
+        int totalCells = 0;
+        foreach (var table in spawnObject.ourTables)
+        {
+            int tableCells = table.Height * table.Width;
+            if (totalCells <= NumberCell && NumberCell <= totalCells + tableCells)
+            {
+                return table.Id;
+            }
+            totalCells += tableCells;
+        }
+        return -1; // или throw exception, если таблица не найдена
+    }
+
     public async Task<bool> RefrachLists()
     {
         string AddedItemJson = await ItemService.GetAddedItem();
@@ -103,7 +117,8 @@ public class Refrash : MonoBehaviour
                         Health.text = $"{spawnObject.addedItemsList[i].health}";
                         Power.text = $"{spawnObject.addedItemsList[i].power}";
                         XPower.text = $"{spawnObject.addedItemsList[i].xPower}";
-                        DragDrop script = spawnObject.CopyPref(PrefabObject, gameobj.transform.position, gameobj.transform).GetComponent<DragDrop>();
+                        GameObject _object = spawnObject.CopyPref(PrefabObject, gameobj.transform.position, gameobj.transform);
+                        DragDrop script = _object.GetComponent<DragDrop>();
                         script.ThisAddedItem = true;
                         script.Id = spawnObject.addedItemsList[i].id;
                         script.Title = spawnObject.addedItemsList[i].title;
@@ -115,6 +130,11 @@ public class Refrash : MonoBehaviour
                         script.Health = spawnObject.addedItemsList[i].health;
                         script.Power = spawnObject.addedItemsList[i].power;
                         script.XPower = spawnObject.addedItemsList[i].xPower;
+
+
+                        _object.transform.Rotate(0, 0, (float)spawnObject.ourTables[FindTableNumber(Count) - 1].Rotate);
+
+
                         break;
                     }
                     
@@ -132,6 +152,7 @@ public class Refrash : MonoBehaviour
 
     public async Task<bool> RefreshItemsInShop()
     {
+        TableCreator tableCreator = MainCamera.GetComponent<TableCreator>();
         if (await RefrachLists())
         {
 
@@ -143,7 +164,7 @@ public class Refrash : MonoBehaviour
             int count = 0;
             foreach (ItemModel Item in spawnObject.AllItems)
             {
-                if (spawnObject.AllItems[count].Place <= (spawnObject.sizeTable[^1].height * spawnObject.sizeTable[^1].width))
+                if (spawnObject.AllItems[count].Place <= tableCreator.ourCell.Count)
                 {
                     Title.text = Item.Title;
                     Price.text = $"{Item.Price}";

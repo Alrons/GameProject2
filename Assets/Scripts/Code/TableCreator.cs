@@ -16,7 +16,7 @@ public class TableCreator : MonoBehaviour
 
     public int cellSpacing = 10; // Расстояние между ячейками
 
-    public void CreateTable(int width, int height, Vector3 Position, int Rotate)
+    public void CreateTable(int width, int height, Vector3 Position, double Rotate)
     {
         // Создаем фон таблицы
         GameObject gameObject = CopyPref(cellBackgroundTransform.gameObject);
@@ -45,7 +45,7 @@ public class TableCreator : MonoBehaviour
         gameObject.transform.localScale = new Vector3(1, 1, 1);
         rectTransfrom = gameObject.GetComponent<RectTransform>();
         rectTransfrom.sizeDelta = new Vector2(((width - 1) * 200) + 170, ((height - 1) * 130) + 75);
-        gameObject.transform.Rotate(0, 0, Rotate);
+        gameObject.transform.Rotate(0, 0, (float)Rotate);
     }
 
     //то что копируем \ куда копируем x y z \ родитель

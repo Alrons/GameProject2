@@ -86,16 +86,17 @@ public class SpawnObject : MonoBehaviour
 
     private void Initializing()
     {
-        InitializingItems();
+        
         InitializingTable();
         InitializingAddedItems();
+        InitializingItems();
     }
     public GameObject CopyPref(GameObject box, Vector3 position, Transform setparent)
     {
         var spawn = Instantiate(box, position, Quaternion.identity);
         spawn.transform.SetParent(setparent.transform);
+        spawn.transform.Rotate(0, 0, 0);
         spawn.transform.localScale = new Vector3(1, 1, 1);
-
         return spawn;
 
     }
@@ -116,7 +117,8 @@ public class SpawnObject : MonoBehaviour
             tester.ForStart("InitializingItems",i, AllItems.Count);
             if (count != AllItems.Count)
             {
-                if (AllItems[i].Place <= (sizeTable[^1].height * sizeTable[^1].width))
+                TableCreator tableCreator = MainCamera.GetComponent<TableCreator>();
+                if (AllItems[i].Place <= tableCreator.ourCell.Count)
                 {
                     ChangePref(AllItems[i].Title, AllItems[i].Price, AllItems[i].Description, AllItems[i].Health, AllItems[i].Power, AllItems[i].XPover);
                     GameObject gmItem = CopyPref(Box, Box.transform.position, CanvasObject);
@@ -142,15 +144,29 @@ public class SpawnObject : MonoBehaviour
         TableCreator tableCreator = MainCamera.GetComponent<TableCreator>();
         foreach (OurTablesModel Tables in ourTables)
         {
-            tableCreator.CreateTable(Tables.Width, Tables.Height,new Vector3 ((float)Tables.PosX, (float)Tables.PosY),0);
+
+            tableCreator.CreateTable(Tables.Width, Tables.Height,new Vector3 ((float)Tables.PosX, (float)Tables.PosY),Tables.Rotate);
         }
 
     }
-
+    private int FindTableNumber(int NumberCell)
+    {
+        int totalCells = 0;
+        foreach (var table in ourTables)
+        {
+            int tableCells = table.Height * table.Width;
+            if (totalCells <= NumberCell && NumberCell <= totalCells + tableCells)
+            {
+                return table.Id;
+            }
+            totalCells += tableCells;
+        }
+        return -1; // или throw exception, если таблица не найдена
+    }
 
     private void InitializingAddedItems()
     {
-
+        
         TableCreator tableCreator = MainCamera.GetComponent<TableCreator>();
         int Count = 1;
         foreach (GameObject gameobj in tableCreator.ourCell)
@@ -171,7 +187,8 @@ public class SpawnObject : MonoBehaviour
                     Health.text = $"{addedItemsList[i].health}";
                     Power.text = $"{addedItemsList[i].power}";
                     XPower.text = $"{addedItemsList[i].xPower}";
-                    DragDrop script = CopyPref(Box, gameobj.transform.position, gameobj.transform).GetComponent<DragDrop>();
+                    GameObject newpref = CopyPref(Box, gameobj.transform.position, gameobj.transform);
+                    DragDrop script = newpref.GetComponent<DragDrop>();
                     script.ThisAddedItem = true;
                     script.Id = addedItemsList[i].id;
                     script.Title = addedItemsList[i].title;
@@ -183,6 +200,8 @@ public class SpawnObject : MonoBehaviour
                     script.Health = addedItemsList[i].health;
                     script.Power = addedItemsList[i].power;
                     script.XPower = addedItemsList[i].xPower;
+                    newpref.transform.Rotate(0, 0, (float)ourTables[FindTableNumber(Count)-1].Rotate);
+                    
                     break;
                 }
 
