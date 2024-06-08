@@ -90,6 +90,9 @@ public class SpawnObject : MonoBehaviour
         InitializingTable();
         InitializingAddedItems();
         InitializingItems();
+
+        Refrash refrash = MainCamera.GetComponent<Refrash>();
+        refrash.RefreshLinePower();
     }
     public GameObject CopyPref(GameObject box, Vector3 position, Transform setparent)
     {

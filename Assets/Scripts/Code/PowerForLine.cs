@@ -8,46 +8,29 @@ using UnityEngine.UI;
 
 public class PowerForLine : MonoBehaviour
 {
+    
+    public int StartNumberCell {  get; set; }
+    public int EndNumberCell { get; set; }
+
+    private int Power = 0;
+
+    public Text OurLineText;
+
     public GameObject MainCamera;
-    public Text OneLine;
-    public int NumberLine {  get; set; }
-
-    private SpawnObject spawnObject;
-    private Refrash refrash;
-
-    public async void Ñalculating_line_capacity () 
+    public bool CulculateLine()
     {
-        spawnObject = MainCamera.GetComponent<SpawnObject>();
-        refrash = MainCamera.GetComponent<Refrash>();  
-        int OurPower = 0;
-        int CountLine = 0;
-        if (await refrash.RefrachLists())
+        Power = 0;
+        for (int i = StartNumberCell; i < EndNumberCell; i++)
         {
-            for (int i = 0; i < spawnObject.sizeTable[^1].width * spawnObject.sizeTable[^1].height; i++)
+            TableCreator tableCreator = MainCamera.GetComponent<TableCreator>();
+            GameObject cell = tableCreator.ourCell[i];
+            foreach (Transform item in cell.transform)
             {
-                if (CountLine - 1 == NumberLine)
-                {
-
-                    for (int j = 0; j < spawnObject.addedItemsList.Count; j++)
-                    {
-                        if (i == spawnObject.addedItemsList[j].place)
-                        {
-                            OurPower += spawnObject.addedItemsList[j].power;
-                        }
-                    }
-                }
-                if (i % spawnObject.sizeTable[^1].width == 0)
-                {
-                    CountLine++;
-
-                }
+                DragDrop dragDrop = item.GetComponent<DragDrop>();
+                Power += dragDrop.Power;
             }
-            OneLine.text = $"{OurPower}";
         }
-
-
-        
-
+        OurLineText.text = $"{Power}";
+        return true;
     }
-
 }

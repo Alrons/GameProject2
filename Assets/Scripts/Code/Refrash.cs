@@ -49,12 +49,11 @@ public class Refrash : MonoBehaviour
     }
     public void RefreshLinePower()
     {
-        foreach (Transform transform in RefrashCunvas)
+        TableCreator tableCreator = GetComponent<TableCreator>();
+        foreach (Text txt in tableCreator.textsLinePower)
         {
-            if (transform.name == "Text (Legacy)(Clone)")
-            {
-                transform.GetComponent<PowerForLine>().Ñalculating_line_capacity();
-            }
+            PowerForLine powerForLine = txt.GetComponent<PowerForLine>();
+            powerForLine.CulculateLine();
         }
     }
 
@@ -142,9 +141,9 @@ public class Refrash : MonoBehaviour
                 Count++;
 
             }
-                
+            RefreshLinePower();
         }
-        RefreshLinePower();
+        
         return true;
     }
         
@@ -188,6 +187,7 @@ public class Refrash : MonoBehaviour
                 }
                 count++;
             }
+            RefreshLinePower();
         }
         return true;
     } 

@@ -725,7 +725,9 @@ MonoBehaviour:
   Canvas: {fileID: 363448704}
   cellBackgroundTransform: {fileID: 2059346500}
   cellContentTransform: {fileID: 1183228539}
+  OurLinePower: {fileID: 1007147155}
   ourCell: []
+  textsLinePower: []
   cellSpacing: 100
 --- !u!1 &550551545
 GameObject:
@@ -1801,8 +1803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4663fde9a0ab9304f96eda6c1328255a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OurLineText: {fileID: 1007147155}
   MainCamera: {fileID: 519420028}
-  OneLine: {fileID: 1007147155}
 --- !u!1 &1137503844 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1993356884603921908, guid: 032a72cfc45569047a538913e5ea1311, type: 3}
