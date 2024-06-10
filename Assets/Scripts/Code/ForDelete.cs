@@ -13,6 +13,7 @@ public class ForDelete : MonoBehaviour, IPointerClickHandler
 {
     public GameObject GameObjects;
     public GameObject MainCamera;
+    public GameObject Coins;
     private DragDrop DragDropScript;
     private Refrash refrash;
 
@@ -25,10 +26,11 @@ public class ForDelete : MonoBehaviour, IPointerClickHandler
     public async void OnPointerClick(PointerEventData eventData)
     {
         int Count = 1;
-        Debug.Log(DragDropScript.ThisAddedItem);
+        Debug.Log(DragDropScript.Сurrency);
         if (DragDropScript.ThisAddedItem)
         {
-
+            Coins.GetComponent<currency>().currencyValues[DragDropScript.Сurrency - 1] = Coins.GetComponent<currency>().currencyValues[DragDropScript.Сurrency - 1] + (DragDropScript.Price/2);
+            Coins.GetComponent<currency>().ChangeValues();
             ItemService ItemService = new ItemService();
             ItemService.DeleteAddedItem(DragDropScript.Id);
             bool Cheak = await ItemService.PostItem(new ItemModel(DragDropScript.Id, DragDropScript.Title, DragDropScript.Description, DragDropScript.Price, DragDropScript.Сurrency, DragDropScript.Image, DragDropScript.Place, DragDropScript.Health, DragDropScript.Power, DragDropScript.XPower));

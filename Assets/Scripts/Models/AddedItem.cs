@@ -13,7 +13,7 @@ public class AddedItemModel
     public string title;
     public string description;
     public int price; // Change the type of price to int
-    public int currency;
+    public int сurrency;
     public string image;
     public int place;
     public int health;
@@ -27,7 +27,7 @@ public class AddedItemModel
         this.title = title;
         this.description = description;
         this.price = price;
-        this.currency = currency;
+        this.сurrency = currency;
         this.image = image;
         this.place = place;
         this.health = health;

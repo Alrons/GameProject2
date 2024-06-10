@@ -38,20 +38,19 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     [SerializeField] private Transform CanfasWereDrop;
     public GameObject SciptSpawnObject;
     public GameObject SciptRefresh;
-
-
-
+    public GameObject coins;
 
     Tests tester = new Tests("DragDrop");
     private SpawnObject spawnObject;
     private Refrash Refrash;
+    private currency currency;
 
     private void Start()
     {
         // ... other initialization code ...
         spawnObject = SciptSpawnObject.GetComponent<SpawnObject>();
         Refrash = SciptSpawnObject.GetComponent<Refrash>();
-        
+        currency = coins.GetComponent<currency>();
 
     }
 
@@ -129,13 +128,18 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         {
             if (formIsFull)
             {
-                ItemService itemService = new ItemService();
+                if (currency.currencyValues[Ñurrency-1]>= Price)
+                {
+                    ItemService itemService = new ItemService();
+                    currency.currencyValues[Ñurrency - 1] = currency.currencyValues[Ñurrency - 1] - Price;
 
+                    bool check = await itemService.PostAddedItem(new AddedItemModel(Id, 1, Title, Description, Price, Ñurrency, Image, Place, Health, Power, XPower));
+                    Refreshing(check);
+                    
 
-                bool check = await itemService.PostAddedItem(new AddedItemModel(Id, 1, Title, Description,Price,Ñurrency,Image,Place,Health,Power,XPower));
-                Refreshing(check);
-
-                Destroy(dragObject);
+                    Destroy(dragObject);
+                }
+                
 
 
             }

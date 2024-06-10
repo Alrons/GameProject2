@@ -197,7 +197,7 @@ public class SpawnObject : MonoBehaviour
                     script.Title = addedItemsList[i].title;
                     script.Description = addedItemsList[i].description;
                     script.Price = addedItemsList[i].price;
-                    script.Ñurrency = addedItemsList[i].currency;
+                    script.Ñurrency = addedItemsList[i].ñurrency;
                     script.Image = addedItemsList[i].image;
                     script.Place = addedItemsList[i].place;
                     script.Health = addedItemsList[i].health;

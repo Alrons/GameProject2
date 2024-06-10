@@ -375,6 +375,7 @@
 -analyzer:"B:/Unity/2022.3.22f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"B:/Unity/2022.3.22f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Class/ItemService.cs"
+"Assets/Scripts/Code/currency.cs"
 "Assets/Scripts/Code/DragAndDropGrid.cs"
 "Assets/Scripts/Code/DragDrop.cs"
 "Assets/Scripts/Code/ForDelete.cs"

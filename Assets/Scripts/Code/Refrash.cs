@@ -16,6 +16,7 @@ public class Refrash : MonoBehaviour
     public GameObject PrefabObject;
     public GameObject MainCamera;
     public GameObject ContentShop;
+    public GameObject Coins;
 
     public Text Title;
     public Text Price;
@@ -98,6 +99,9 @@ public class Refrash : MonoBehaviour
             
             TableCreator tableCreator = MainCamera.GetComponent<TableCreator>();
             int Count = 1;
+            // Ó·ÌÓ‚ÎˇÂÏ ˆÂÌÛ
+            Coins.GetComponent<currency>().ChangeValues();
+
             foreach (GameObject gameobj in tableCreator.ourCell)
             {
 
@@ -123,7 +127,10 @@ public class Refrash : MonoBehaviour
                         script.Title = spawnObject.addedItemsList[i].title;
                         script.Description = spawnObject.addedItemsList[i].description;
                         script.Price = spawnObject.addedItemsList[i].price;
-                        script.—urrency = spawnObject.addedItemsList[i].currency;
+                        script.—urrency = spawnObject.addedItemsList[i].Òurrency;
+
+                        //Debug.Log(spawnObject.addedItemsList[i].currency);
+                        
                         script.Image = spawnObject.addedItemsList[i].image;
                         script.Place = spawnObject.addedItemsList[i].place;
                         script.Health = spawnObject.addedItemsList[i].health;
