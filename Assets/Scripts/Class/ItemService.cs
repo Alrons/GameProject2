@@ -131,29 +131,6 @@ namespace Assets.Scripts.Class
             }
         }
 
-        public async Task<string> GetSizeTable()
-        {
-            try
-            {
-                HttpResponseMessage response = default;
-                for (int i = 0; i < 2; i++)
-                {
-                    response = await _httpClient.GetAsync(_SizeTables);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        break;
-                    }
-                }
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStringAsync();
-
-            }
-            catch (HttpRequestException ex)
-            {
-                Debug.LogError($"Error getting added items: {ex.Message}");
-                throw; // re-throw the exception
-            }
-        }
         public async Task<string> GetOurTables()
         {
             try

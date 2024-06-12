@@ -22,7 +22,6 @@ public class SpawnObject : MonoBehaviour
     public List<AddedItemModel> addedItemsList = new List<AddedItemModel>();
     public List<AddedItemsModelTest> Test = new List<AddedItemsModelTest>();
     public List<ItemModel> AllItems = new List<ItemModel>();
-    public List<SizeTableModel> sizeTable = new List<SizeTableModel>();
     public List<OurTablesModel> ourTables = new List<OurTablesModel>();
 
     private int count;
@@ -63,14 +62,6 @@ public class SpawnObject : MonoBehaviour
         AllItems = JsonConvert.DeserializeObject<List<ItemModel>>(ItemJson);
 
         tester.StringLength(ItemJson, 10);
-
-
-
-        string SizeTableJson = await ItemService.GetSizeTable();
-
-        tester.StringLength(SizeTableJson, 10);
-
-        sizeTable = JsonConvert.DeserializeObject<List<SizeTableModel>>(SizeTableJson);
 
 
 

@@ -26,7 +26,6 @@ public class ForDelete : MonoBehaviour, IPointerClickHandler
     public async void OnPointerClick(PointerEventData eventData)
     {
         int Count = 1;
-        Debug.Log(DragDropScript.Сurrency);
         if (DragDropScript.ThisAddedItem)
         {
             Coins.GetComponent<currency>().currencyValues[DragDropScript.Сurrency - 1] = Coins.GetComponent<currency>().currencyValues[DragDropScript.Сurrency - 1] + (DragDropScript.Price/2);

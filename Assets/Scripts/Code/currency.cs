@@ -18,6 +18,7 @@ public class currency : MonoBehaviour
     public Text textCurrencyNames;
     public Text textcurrencyValues;
 
+
     private void Start()
     {
         currencyNames.Add("currency1");
@@ -47,6 +48,7 @@ public class currency : MonoBehaviour
             count++;
         }
     }
+
     private GameObject CopyPref(GameObject Prefub, Transform setparent)
     {
         var spawn = Instantiate(Prefub);

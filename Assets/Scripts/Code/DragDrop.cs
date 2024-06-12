@@ -120,10 +120,21 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         recetTransform.anchoredPosition += eventData.delta;
     }
 
+
+    //возращает цвет после N количества времени 
+    IEnumerator CantUseForm() 
+    {
+
+        form.GetComponent<Image>().color = new Color(255f, 0f, 0f, 0.2f);
+        yield return new WaitForSeconds(1);
+        form.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.1f);
+    }
+
     public async void OnEndDrag(PointerEventData eventData)//опускание 
     {
         FormIsFull();
         scrollRect.vertical = true;
+        bool Check = false;
         if (posNow)
         {
             if (formIsFull)
@@ -135,18 +146,22 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
                     bool check = await itemService.PostAddedItem(new AddedItemModel(Id, 1, Title, Description, Price, Сurrency, Image, Place, Health, Power, XPower));
                     Refreshing(check);
-                    
 
                     Destroy(dragObject);
                 }
-                
-
+                else
+                {
+                    Check = true;
+                }
 
             }
-            
+
         }
         form.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.1f);//подсветка
-
+        if (Check)
+        {
+            StartCoroutine(CantUseForm());
+        }
         this.transform.position = startPos;// возвращение на место если условие не верно 
     }
     private async void Refreshing(bool check)

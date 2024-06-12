@@ -12,7 +12,7 @@ namespace Assets.Scripts.Interfase
 
         Task<string> GetAddedItem();
 
-        Task<string> GetSizeTable();
+        Task<string> GetOurTables();
 
         Task<bool> PostItem(ItemModel model);
 
