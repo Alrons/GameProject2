@@ -10,7 +10,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.UIElements;
-using Assets.Scripts.Class;
 using Assets.Scripts.Models;
 using Newtonsoft.Json;
 using SimpleJSON;

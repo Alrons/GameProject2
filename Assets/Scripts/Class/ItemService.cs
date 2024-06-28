@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Interfase;
+using Assets.Scripts.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,38 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Class
-{
     public class ItemService : IItemService
     {
-        // Use a constant for the base URL
-        private const string BaseUrl = "https://localhost:7139/api/";
-
-        // Use a readonly field for the HTTP client
-        private readonly HttpClient _httpClient;
-
-        // Use a readonly field for the URL
-        private readonly string _AddedItemsUrl;
-
-        private readonly string _Items;
-
-        private readonly string _SizeTables;
-
-        private readonly string _OurTables;
-
-        // Use a private field for the Refrash component
-
-        public ItemService()
-        {
-            // Initialize the HTTP client
-            _httpClient = new HttpClient { BaseAddress = new Uri(BaseUrl) };
-
-            // Initialize the URL
-            _AddedItemsUrl = "AddedItems/";
-            _Items = "Items/";
-            _SizeTables = "SizeTables/";
-            _OurTables = "OurTables/";
-        }
+        private itemServiceProperties ItemServiseProperties = new itemServiceProperties();
         public async Task<bool> DeleteAddedItem(int id)
         {
             try
@@ -48,7 +20,7 @@ namespace Assets.Scripts.Class
                 // Use the BaseUrl constant
                 for (int i = 0; i<2;i++)
                 {
-                    response = await _httpClient.DeleteAsync($"{BaseUrl}{_AddedItemsUrl}{id}");
+                    response = await ItemServiseProperties._httpClient.DeleteAsync($"{ItemServiseProperties.BaseUrl}{ItemServiseProperties._AddedItemsUrl}{id}");
                     if (response.IsSuccessStatusCode)
                     {
                         requestStatus = true;
@@ -72,7 +44,7 @@ namespace Assets.Scripts.Class
                 // Use the BaseUrl constant
                 for (int i = 0; i < 2; i++)
                 {
-                    response = await _httpClient.DeleteAsync($"{BaseUrl}{_Items}{id}");
+                    response = await ItemServiseProperties._httpClient.DeleteAsync($"{ItemServiseProperties.BaseUrl}{ItemServiseProperties._Items}{id}");
                     if (response.IsSuccessStatusCode)
                     {
                         requestStatus = true;
@@ -95,7 +67,7 @@ namespace Assets.Scripts.Class
                 HttpResponseMessage response = default;
                 for (int i = 0; i < 2; i++)
                 {
-                    response = await _httpClient.GetAsync(_AddedItemsUrl);
+                    response = await ItemServiseProperties._httpClient.GetAsync(ItemServiseProperties._AddedItemsUrl);
                 }
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStringAsync();
@@ -114,7 +86,7 @@ namespace Assets.Scripts.Class
                 HttpResponseMessage response = default;
                 for (int i = 0; i < 2; i++)
                 {
-                    response = await _httpClient.GetAsync(_Items);
+                    response = await ItemServiseProperties._httpClient.GetAsync(ItemServiseProperties._Items);
                     if (response.IsSuccessStatusCode)
                     {
                         break;
@@ -138,7 +110,7 @@ namespace Assets.Scripts.Class
                 HttpResponseMessage response = default;
                 for (int i = 0; i < 2; i++)
                 {
-                    response = await _httpClient.GetAsync(_OurTables);
+                    response = await ItemServiseProperties._httpClient.GetAsync(ItemServiseProperties._OurTables);
                     if (response.IsSuccessStatusCode)
                     {
                         break;
@@ -161,7 +133,7 @@ namespace Assets.Scripts.Class
             {
                 var json = JsonUtility.ToJson(model);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await _httpClient.PostAsync(_AddedItemsUrl, content);
+                var response = await ItemServiseProperties._httpClient.PostAsync(ItemServiseProperties._AddedItemsUrl, content);
                 response.EnsureSuccessStatusCode();
                 var responseBody = await response.Content.ReadAsStringAsync();
                 Debug.Log("Response: " + responseBody);
@@ -181,7 +153,7 @@ namespace Assets.Scripts.Class
             {
                 var json = JsonUtility.ToJson(model);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await _httpClient.PostAsync(_Items, content);
+                var response = await ItemServiseProperties._httpClient.PostAsync(ItemServiseProperties._Items, content);
                 response.EnsureSuccessStatusCode();
                 var responseBody = await response.Content.ReadAsStringAsync();
                 Debug.Log("Response: " + responseBody);
@@ -196,4 +168,4 @@ namespace Assets.Scripts.Class
         }
 
     }
-}
+

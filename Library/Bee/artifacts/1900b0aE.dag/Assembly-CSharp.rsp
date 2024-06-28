@@ -390,7 +390,6 @@
 "Assets/Scripts/Models/ItemModel.cs"
 "Assets/Scripts/Models/OurTablesModel.cs"
 "Assets/Scripts/Models/ShopItemModel.cs"
-"Assets/Scripts/Models/SizeTableModel.cs"
 "Assets/Scripts/OtherFile/NewBehaviourScript.cs"
 "Assets/Scripts/OtherFile/SimpleJSON.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"

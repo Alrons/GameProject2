@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using Unity.VisualScripting;
-using Assets.Scripts.Class;
 
 
 public class ForDelete : MonoBehaviour, IPointerClickHandler
