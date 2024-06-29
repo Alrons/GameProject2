@@ -10,6 +10,8 @@ using static UnityEditor.Progress;
 
 public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+
+    // Так как скрипт прикреплен к 1 предмету, здесь хранятся пораметры каждого предмета
     public bool ThisAddedItem { get; set; }
     public int Id { get; set; }
     public string Title { get; set; }
@@ -22,32 +24,29 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public int Power { get; set; }
     public int XPower { get; set; }
 
-    private RectTransform recetTransform;
-    private Vector2 startPos;// стартовая позиция
-    
-    private GameObject form;// общая переменная в которую мы будем назначать место для большего удобства
-    private bool posNow;
-    private bool formIsFull;
-    private bool DidTheFormSearchWork = false;
-    private bool DidThePlaseSearchWork = false;
-    private int OurPlase;
-
-    [SerializeField] private GameObject dragObject; // наш объект
-    [SerializeField] private ScrollRect scrollRect;
-    [SerializeField] private Transform CanfasWereDrop;
+    // получаем юнити объекты
+    public GameObject dragObject; // наш объект
+    public ScrollRect scrollRect;
+    public Transform CanfasWereDrop;
     public GameObject SciptSpawnObject;
     public GameObject SciptRefresh;
     public GameObject coins;
 
+
+
+    dragDropProperties dragDropProperties = new dragDropProperties();
     Tests tester = new Tests("DragDrop");
-    private SpawnObject spawnObject;
+
+
+    // Нужно для связи скриптов
+    private SpawnObject MainCamera;
     private Refrash Refrash;
     private currency currency;
 
     private void Start()
     {
         // ... other initialization code ...
-        spawnObject = SciptSpawnObject.GetComponent<SpawnObject>();
+        MainCamera = SciptSpawnObject.GetComponent<SpawnObject>();
         Refrash = SciptSpawnObject.GetComponent<Refrash>();
         currency = coins.GetComponent<currency>();
 
@@ -55,24 +54,24 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     private void FormIsFull()
     {
-        if (form.transform.childCount > 0)
+        if (dragDropProperties.form.transform.childCount > 0)
         {
-            formIsFull = false;
+            dragDropProperties. formIsFull = false;
         }
         else
         {
-            formIsFull = true;
+            dragDropProperties.formIsFull = true;
         }
     }
 
 
     private void FindForm()
     {
-        if (!DidTheFormSearchWork)
+        if (!dragDropProperties.DidTheFormSearchWork)
         {
             TableCreator tableCreator = SciptSpawnObject.GetComponent<TableCreator>();
-            form = tableCreator.ourCell[Place - 1];
-            DidTheFormSearchWork = true;
+            dragDropProperties.form = tableCreator.ourCell[Place - 1];
+            dragDropProperties.DidTheFormSearchWork = true;
         }
         
 
@@ -83,19 +82,19 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject == form)
+        if (collision.gameObject == dragDropProperties.form)
         {
             Debug.Log("collision: works");
-            posNow = true;
+            dragDropProperties.posNow = true;
         }
     }
 
     public void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.gameObject == form)
+        if (collision.gameObject == dragDropProperties.form)
         {
-            posNow = false;
+            dragDropProperties.posNow = false;
         }
     }
 
@@ -105,8 +104,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         FindForm();
         scrollRect.vertical = false;
         //image.raycastTarget = false;
-        startPos = dragObject.transform.position; // Берем координаты изначальной позиций и запоминаем
-        form.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.6f);//подсветка
+        dragDropProperties.startPos = dragObject.transform.position; // Берем координаты изначальной позиций и запоминаем
+        dragDropProperties.form.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.6f);//подсветка
 
 
 
@@ -115,8 +114,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnDrag(PointerEventData eventData)// перемещение 
     {
-        recetTransform = GetComponent<RectTransform>();
-        recetTransform.anchoredPosition += eventData.delta;
+        dragDropProperties.recetTransform = GetComponent<RectTransform>();
+        dragDropProperties.recetTransform.anchoredPosition += eventData.delta;
     }
 
 
@@ -124,9 +123,9 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     IEnumerator CantUseForm() 
     {
 
-        form.GetComponent<Image>().color = new Color(255f, 0f, 0f, 0.2f);
+        dragDropProperties.form.GetComponent<Image>().color = new Color(255f, 0f, 0f, 0.2f);
         yield return new WaitForSeconds(1);
-        form.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.1f);
+        dragDropProperties.form.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.1f);
     }
 
     public async void OnEndDrag(PointerEventData eventData)//опускание 
@@ -134,9 +133,9 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         FormIsFull();
         scrollRect.vertical = true;
         bool Check = false;
-        if (posNow)
+        if (dragDropProperties.posNow)
         {
-            if (formIsFull)
+            if (dragDropProperties.formIsFull)
             {
                 if (currency.currencyValues[Сurrency-1]>= Price)
                 {
@@ -156,12 +155,12 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             }
 
         }
-        form.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.1f);//подсветка
+        dragDropProperties.form.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.1f);//подсветка
         if (Check)
         {
             StartCoroutine(CantUseForm());
         }
-        this.transform.position = startPos;// возвращение на место если условие не верно 
+        this.transform.position = dragDropProperties.startPos;// возвращение на место если условие не верно 
     }
     private async void Refreshing(bool check)
     {
