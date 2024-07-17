@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+// тестовое слово, test word
     public class ItemService : IItemService
     {
         private itemServiceProperties ItemServiseProperties = new itemServiceProperties();
